@@ -32,7 +32,7 @@ class Answers
     /**
      * @ORM\Column(type="boolean")
      */
-    private $IsValid;
+    private $isValid;
 
     public function __construct()
     {
@@ -84,12 +84,12 @@ class Answers
 
     public function getIsValid(): ?bool
     {
-        return $this->IsValid;
+        return $this->isValid;
     }
 
-    public function setIsValid(bool $IsValid): self
+    public function setIsValid(bool $isValid): self
     {
-        $this->IsValid = $IsValid;
+        $this->isValid = $isValid;
 
         return $this;
     }

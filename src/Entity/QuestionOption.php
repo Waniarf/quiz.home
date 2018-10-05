@@ -25,12 +25,12 @@ class QuestionOption
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Text;
+    private $text;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $IsValid;
+    private $isValid;
 
     public function getId(): ?int
     {
@@ -51,24 +51,24 @@ class QuestionOption
 
     public function getText(): ?string
     {
-        return $this->Text;
+        return $this->text;
     }
 
-    public function setText(string $Text): self
+    public function setText(string $text): self
     {
-        $this->Text = $Text;
+        $this->text = $text;
 
         return $this;
     }
 
     public function getIsValid(): ?bool
     {
-        return $this->IsValid;
+        return $this->isValid;
     }
 
-    public function setIsValid(bool $IsValid): self
+    public function setIsValid(bool $isValid): self
     {
-        $this->IsValid = $IsValid;
+        $this->isValid = $isValid;
 
         return $this;
     }

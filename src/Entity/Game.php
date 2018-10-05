@@ -26,12 +26,12 @@ class Game
     /**
      * @ORM\Column(type="datetime")
      */
-    private $TimeStart;
+    private $timeStart;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $TineEnd;
+    private $tineEnd;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -67,24 +67,24 @@ class Game
 
     public function getTimeStart(): ?\DateTimeInterface
     {
-        return $this->TimeStart;
+        return $this->timeStart;
     }
 
-    public function setTimeStart(\DateTimeInterface $TimeStart): self
+    public function setTimeStart(\DateTimeInterface $timeStart): self
     {
-        $this->TimeStart = $TimeStart;
+        $this->timeStart = $timeStart;
 
         return $this;
     }
 
     public function getTineEnd(): ?\DateTimeInterface
     {
-        return $this->TineEnd;
+        return $this->tineEnd;
     }
 
-    public function setTineEnd(?\DateTimeInterface $TineEnd): self
+    public function setTineEnd(?\DateTimeInterface $tineEnd): self
     {
-        $this->TineEnd = $TineEnd;
+        $this->tineEnd = $tineEnd;
 
         return $this;
     }

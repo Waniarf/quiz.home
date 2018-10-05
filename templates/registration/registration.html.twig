@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="SumForm">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_errors(form.username) }}
+            <div class="col-sm-12">
+                {{ form_label(form.username ) }}
+                {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            {{ form_errors(form.email) }}
+            <div class="col-sm-12">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.plainPassword.first) }}
+            <div class="col-sm-12">
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+
+            {{ form_errors(form.plainPassword.second) }}
+            <div class="col-sm-12">
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+
+            {{ form_errors(form.name) }}
+            <div class="col-sm-12">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+
+            {{ form_errors(form.surname) }}
+            <div class="col-sm-12">
+                {{ form_label(form.surname) }}
+                {{ form_widget(form.surname, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+
+            {{ form_errors(form.lastname) }}
+            <div class="col-sm-12">
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <br>
+                <button type="submit" class="btn btn-default">Register</button> or
+                <a class="btn btn-default" href="http://quiz.home/login">Login</a>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

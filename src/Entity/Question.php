@@ -21,7 +21,7 @@ class Question
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Text;
+    private $text;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="Question")
@@ -52,12 +52,12 @@ class Question
 
     public function getText(): ?string
     {
-        return $this->Text;
+        return $this->text;
     }
 
-    public function setText(string $Text): self
+    public function setText(string $text): self
     {
-        $this->Text = $Text;
+        $this->text = $text;
 
         return $this;
     }
