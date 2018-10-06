@@ -20,16 +20,6 @@ class UserRepository extends ServiceEntityRepository
     }
 
     public function getUserByToken(string $token, string $typeToken){
-/*        return $this->createQueryBuilder('user')
-            ->innerJoin('user.token', 'token')
-            ->addSelect('token')
-            ->Where('user.token = :t')
-            ->andWhere('token.type = :r')
-            ->setParameter('r', $typeToken)
-            ->setParameter('t', $token)
-            ->getQuery()
-            ->getResult();
-*/
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT user
@@ -39,6 +29,29 @@ class UserRepository extends ServiceEntityRepository
         )
             ->setParameter('token', $token)
             ->setParameter('typeToken', $typeToken);
+        return $query->getOneOrNullResult();
+    }
+
+    public function getUserByUsername(string $username)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT user
+            FROM App\Entity\User user
+            WHERE user.username = :username'
+        )
+            ->setParameter('username', $username);
+        return $query->getOneOrNullResult();
+    }
+    public function getUserByEmail(string $email)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT user
+            FROM App\Entity\User user
+            WHERE user.email = :email'
+        )
+            ->setParameter('email', $email);
         return $query->getOneOrNullResult();
     }
 //    /**

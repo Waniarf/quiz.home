@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -26,7 +25,7 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     private $password;
 
@@ -37,7 +36,7 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $username;
 
@@ -62,19 +61,21 @@ class User implements UserInterface, \Serializable
     private $lastname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="array")
      */
-    private $role;
+    private $roles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Token", mappedBy="User")
      */
     private $token;
 
+
     public function __construct()
     {
         $this->token = new ArrayCollection();
         $this->isActive = false;
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
@@ -176,14 +177,14 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRole(): string
+    public function getRoles(): array
     {
-        return $this->role;
+        return $this->roles;
     }
 
-    public function setRole(string $role): self
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -233,10 +234,7 @@ class User implements UserInterface, \Serializable
      *
      * @return (Role|string)[] The user roles
      */
-    public function getRoles()
-    {
-        return $this->role;
-    }
+
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -294,5 +292,10 @@ class User implements UserInterface, \Serializable
             $this->password,
             $this->isActive,
             ) = unserialize($serialized);
+    }
+
+    public function getType(): string
+    {
+        // TODO: Implement getType() method.
     }
 }

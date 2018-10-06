@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <form class="form-horizontal" action="{{ path('login') }}" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-10">
+                <input type="text" id="username" name="_username" class="form-control" placeholder="Enter Name" value="{{ last_username }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-10">
+                <input class="form-control" placeholder="Enter password" type="password" id="password" name="_password">
+                {% if error %}
+                    <div class="ErrorText">{{ error.messageKey}}</div>
+                {% endif %}
+            </div>
+        </div>
+        <p>
+            <a  href="http://quiz.home/recovery">Забыли пороль?</a>
+        </p>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Войти</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
