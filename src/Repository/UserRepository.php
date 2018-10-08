@@ -25,7 +25,9 @@ class UserRepository extends ServiceEntityRepository
             'SELECT user
             FROM App\Entity\User user
             JOIN user.token token
-            WHERE token.token = :token AND token.type = :typeToken'
+            WHERE token.token = :token 
+            AND token.type = :typeToken
+            AND token.used = false'
         )
             ->setParameter('token', $token)
             ->setParameter('typeToken', $typeToken);

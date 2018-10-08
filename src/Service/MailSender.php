@@ -5,7 +5,7 @@
  * Date: 03.10.18
  * Time: 20:56
  */
-
+declare(strict_types=1);
 namespace App\Service;
 
 
@@ -14,7 +14,7 @@ class MailSender
     private $verificationUrl;
     private $userAddress;
     private $name;
-
+    private $type;
 
     /**
      * MailSender constructor.
@@ -22,11 +22,12 @@ class MailSender
      * @param string $userAddress
      * @param string $name
      */
-    public function __construct(string $verificationUrl, string $userAddress, string $name)
+    public function __construct(string $verificationUrl, string $userAddress, string $name, string $type)
     {
         $this->verificationUrl = $verificationUrl;
         $this->userAddress = $userAddress;
         $this->name = $name;
+        $this->type = $type;
     }
 
     /**
@@ -39,7 +40,7 @@ class MailSender
         $mail = (new \Swift_Message('Quiz verification email'))
             ->setFrom('Quiz@mail.home')
             ->setTo($this->userAddress)
-            ->setBody('Hi '.$this->name.'. Verification URL: '.$this->verificationUrl);
+            ->setBody('Hi '.$this->name.'. '.$this->type.' URL: '.$this->verificationUrl);
 
         $mailer->send($mail);
     }

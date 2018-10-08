@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_errors(form.email) }}
+        <div class="col-sm-12">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <br>
+            <button type="submit" class="btn btn-default">Accept</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

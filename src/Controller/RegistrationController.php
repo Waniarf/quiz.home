@@ -5,7 +5,7 @@
  * Date: 02.10.18
  * Time: 15:03
  */
-
+declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Token;
@@ -27,11 +27,6 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncode, \Swift_Mailer $mailer)
     {
-        if ($this->getUser()) {
-            throw $this->createNotFoundException(
-                'no access'
-            );
-        }
 
         $user = new User();
 
@@ -75,9 +70,10 @@ class RegistrationController extends AbstractController
             $em->flush();
 
             $mailSender = new MailSender(
-                'http:'.$request->getHost().':8000/registration/mail/'.$token->getToken(),
+                $request->getSchemeAndHttpHost().'/registration/mail/'.$token->getToken(),
                 $user->getEmail(),
-                $user->getName());
+                $user->getName(),
+                "Verification");
             $mailSender->sendMail($mailer, $this);
 
             return $this->render('registration/sendEmailMessage.html.twig');
@@ -90,7 +86,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/registration/mail/{tokenStr}", name="mailVerificztion")
+     * @Route("/registration/mail/{tokenStr}", name="mailVerificationRegistration")
      */
     public function mailVerification(string $tokenStr)
     {
@@ -117,7 +113,7 @@ class RegistrationController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        return $this->render('registration/emailVerificationSuccess.html.twig');
+        return $this->render('registration/success.html.twig');
     }
 
 
