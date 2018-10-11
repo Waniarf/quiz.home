@@ -2,16 +2,32 @@
 
 {% block title %}Hello {{ controller_name }}!{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+{% endblock %}
+
 {% block body %}
+
+
 
     {{ form_start(form, {  'name':'CustomValid','method': 'POST'}) }}
     {{ form_errors(form) }}
     {{ form_end(form) }}
-    {{ dump(questions) }}
+
+    </div>
+
     <script>
         $(document).ready(function() {
-            $('select').selectpicker();
+            $('.selectpicker').selectpicker();
         } );
 
     </script>
+
 {% endblock %}

@@ -72,31 +72,20 @@ class QuizController extends AbstractController
         $quiz = $quizRepository->findOneBy(["id" => $id]);
         $form = $this->createForm(EditQuizType::class, $quiz);
         $form->handleRequest($request);
-        $qb = $this->getDoctrine()->getManager();
-        $qb= $qb->createQueryBuilder('p');
-        $qb->select('p')
-            ->innerJoin('p.quiz', 'q')
-            ->where('q.question_id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()->getResult();
-        $questions = $questionRepository->findBy(['quiz' =>$id]);
 
-        dump($questions);
-        die;
         if ($form->isSubmitted() ) {
-
-
             $questionId = $form['question']->getViewData();
             $question = $questionRepository->findOneBy(['id' => $questionId]);
             $quiz->addQuestion($question);
             $em = $this->getDoctrine()->getManager();
             $em->flush();
+
                 return $this->redirectToRoute('quiz_edit', array('id' => $id));
             }
-        return $this->render('quiz/new.html.twig', [
+        return $this->render('quiz/edit.html.twig', [
             'controller_name' => 'QuizController',
             'form' => $form->createView(),
-            'questions' => $questions,
+
         ]);
     }
 
