@@ -26,7 +26,7 @@ class Question
     private $text;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="question", cascade = {"ALL"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="question", cascade = {"persist"})
      */
     private $quiz;
 
@@ -36,7 +36,7 @@ class Question
     private $questionOptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Answers", mappedBy="Question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Answers", mappedBy="question", orphanRemoval=true)
      */
     private $answers;
 

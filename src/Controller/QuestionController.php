@@ -106,9 +106,10 @@ class QuestionController extends AbstractController
      */
     public function delete(QuestionRepository $questionRepository, $id, Request $request)
     {
-        $question = $questionRepository->findOneBy(['id' => $id]);
+
         if($request->isXmlHttpRequest())
         {
+            $question = $questionRepository->findOneBy(['id' => $id]);
             $em = $this->getDoctrine()->getManager();
             $em->remove($question);
             $em->flush();

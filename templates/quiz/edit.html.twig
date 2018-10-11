@@ -19,6 +19,41 @@
 
     {{ form_start(form, {  'name':'CustomValid','method': 'POST'}) }}
     {{ form_errors(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.IsActive) }}
+    {% if (questions) %}
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+                <th width="5%">Index</th>
+                <th>Text</th>
+                <th width = "7%" data-orderable="false">Edit</th>
+                <th width = "7%" data-orderable="false">Delete</th>
+            </tr>
+            </thead>
+
+            {% for question  in questions %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ question.Text }}</td>
+                    <td><a href = "/admin/question/edit/{{ question.id }}">Edit</a></td>
+                    <td>Delete</td>
+                </tr>
+            {% endfor %}
+            <tfoot>
+            <tr>
+                <th>Index</th>
+                <th>Text</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+    Not found questions for this quiz
+    {% endif %}
+    {{ form_row(form.question) }}
     {{ form_end(form) }}
 
     </div>

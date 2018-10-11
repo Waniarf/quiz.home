@@ -39,7 +39,7 @@ class EditQuizType extends AbstractType
                     'No' => false,
                 ),
                 'attr' => [
-                    'class' => 'form-check-input',
+
                 ]
             ))
             ->add('question', EntityType::class, array(
@@ -52,6 +52,7 @@ class EditQuizType extends AbstractType
                     'data-live-search'=>'true',
                 ]
             ))
+
             ->add('save', SubmitType::class, array('label' => 'Save'))
 //            ->add('createData')
 //            ->add('isActive')

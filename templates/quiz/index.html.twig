@@ -24,7 +24,7 @@
                 <td>{{ quiz.description }}</td>
                 <td>{{ quiz.CreateData|date("H:m:s d/m/Y") }}</td>
                 <td>{% if quiz.isActive == 1 %} Active {% else %} Not active {% endif %}</td>
-                <td>Edit</td>
+                <td><a href = "/admin/quiz/edit/{{ quiz.id }}">Edit</a></td>
                 <td>Delete</td>
             </tr>
         {% endfor %}

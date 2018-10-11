@@ -69,13 +69,14 @@ class QuizController extends AbstractController
      */
     public function edit(\Symfony\Component\HttpFoundation\Request $request, $id, QuizRepository $quizRepository, QuestionRepository $questionRepository)
     {
-        $quiz = $quizRepository->findOneBy(["id" => $id]);
+        $quiz = $quizRepository->find($id);
+        $questions = $quiz->getQuestion()->toArray();
+
         $form = $this->createForm(EditQuizType::class, $quiz);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() ) {
             $questionId = $form['question']->getViewData();
-            $question = $questionRepository->findOneBy(['id' => $questionId]);
+            $question = $questionRepository->find(['id' => $questionId]);
             $quiz->addQuestion($question);
             $em = $this->getDoctrine()->getManager();
             $em->flush();
@@ -85,6 +86,7 @@ class QuizController extends AbstractController
         return $this->render('quiz/edit.html.twig', [
             'controller_name' => 'QuizController',
             'form' => $form->createView(),
+            'questions' => $questions,
 
         ]);
     }
