@@ -1053,277 +1053,310 @@ game_id</ColNames>
       <DataType>smallint(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="260" parent="234" name="IDX_232B318C853CD175">
-      <ColNames>quiz_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="261" parent="234" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="262" parent="234" name="FK_232B318C853CD175">
-      <ColNames>quiz_id</ColNames>
-      <RefSchemaName>quizdb</RefSchemaName>
-      <RefTableName>quiz</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="263" parent="235" name="version">
-      <Position>1</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="264" parent="235" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>version</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="265" parent="236" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="266" parent="236" name="text">
-      <Position>2</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="267" parent="236" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="268" parent="237" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="269" parent="237" name="question_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="270" parent="237" name="text">
-      <Position>3</Position>
-      <DataType>varchar(100)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="271" parent="237" name="is_valid">
-      <Position>4</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="272" parent="237" name="IDX_5DDB2FB81E27F6BF">
-      <ColNames>question_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="273" parent="237" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="274" parent="237" name="FK_5DDB2FB81E27F6BF">
-      <ColNames>question_id</ColNames>
-      <RefSchemaName>quizdb</RefSchemaName>
-      <RefTableName>question</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="275" parent="238" name="question_id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="276" parent="238" name="quiz_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="277" parent="238" name="IDX_FAFC177D1E27F6BF">
-      <ColNames>question_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="278" parent="238" name="IDX_FAFC177D853CD175">
-      <ColNames>quiz_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="279" parent="238" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>question_id
-quiz_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="280" parent="238" name="FK_FAFC177D1E27F6BF">
-      <ColNames>question_id</ColNames>
-      <RefSchemaName>quizdb</RefSchemaName>
-      <RefTableName>question</RefTableName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="281" parent="238" name="FK_FAFC177D853CD175">
-      <ColNames>quiz_id</ColNames>
-      <RefSchemaName>quizdb</RefSchemaName>
-      <RefTableName>quiz</RefTableName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="282" parent="239" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="283" parent="239" name="name">
-      <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="284" parent="239" name="description">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="285" parent="239" name="create_data">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="286" parent="239" name="is_active">
-      <Position>5</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="287" parent="239" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="288" parent="240" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="289" parent="240" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="290" parent="240" name="token">
-      <Position>3</Position>
-      <DataType>varchar(80)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="291" parent="240" name="type">
-      <Position>4</Position>
-      <DataType>varchar(25)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="292" parent="240" name="create_time">
-      <Position>5</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="293" parent="240" name="used">
+    <column id="260" parent="234" name="user_id">
       <Position>6</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="294" parent="240" name="IDX_5F37A13BA76ED395">
+    <index id="261" parent="234" name="IDX_232B318C853CD175">
+      <ColNames>quiz_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="262" parent="234" name="IDX_232B318CA76ED395">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="295" parent="240" name="PRIMARY">
+    <key id="263" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="296" parent="240" name="FK_5F37A13BA76ED395">
+    <foreign-key id="264" parent="234" name="FK_232B318C853CD175">
+      <ColNames>quiz_id</ColNames>
+      <RefSchemaName>quizdb</RefSchemaName>
+      <RefTableName>quiz</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="265" parent="234" name="FK_232B318CA76ED395">
       <ColNames>user_id</ColNames>
       <RefSchemaName>quizdb</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="297" parent="241" name="id">
+    <column id="266" parent="235" name="version">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="267" parent="235" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="268" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="241" name="email">
+    <column id="269" parent="236" name="text">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="241" name="password">
+    <key id="270" parent="236" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="271" parent="237" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="237" name="question_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="273" parent="237" name="text">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="241" name="username">
+    <column id="274" parent="237" name="is_valid">
       <Position>4</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="275" parent="237" name="IDX_5DDB2FB81E27F6BF">
+      <ColNames>question_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="276" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="277" parent="237" name="FK_5DDB2FB81E27F6BF">
+      <ColNames>question_id</ColNames>
+      <RefSchemaName>quizdb</RefSchemaName>
+      <RefTableName>question</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="278" parent="238" name="question_id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="238" name="quiz_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="280" parent="238" name="IDX_FAFC177D1E27F6BF">
+      <ColNames>question_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="281" parent="238" name="IDX_FAFC177D853CD175">
+      <ColNames>quiz_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="282" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>question_id
+quiz_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="283" parent="238" name="FK_FAFC177D1E27F6BF">
+      <ColNames>question_id</ColNames>
+      <RefSchemaName>quizdb</RefSchemaName>
+      <RefTableName>question</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="284" parent="238" name="FK_FAFC177D853CD175">
+      <ColNames>quiz_id</ColNames>
+      <RefSchemaName>quizdb</RefSchemaName>
+      <RefTableName>quiz</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="285" parent="239" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="239" name="name">
+      <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="241" name="is_active">
+    <column id="287" parent="239" name="description">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="239" name="create_data">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="239" name="is_active">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="241" name="name">
+    <key id="290" parent="239" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="291" parent="240" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="240" name="user_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="293" parent="240" name="token">
+      <Position>3</Position>
+      <DataType>varchar(80)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="240" name="type">
+      <Position>4</Position>
+      <DataType>varchar(25)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="240" name="create_time">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="296" parent="240" name="used">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="297" parent="240" name="IDX_5F37A13BA76ED395">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="298" parent="240" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="299" parent="240" name="FK_5F37A13BA76ED395">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>quizdb</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="300" parent="241" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="301" parent="241" name="email">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="302" parent="241" name="password">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="303" parent="241" name="username">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="304" parent="241" name="is_active">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="241" name="name">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="241" name="surname">
+    <column id="306" parent="241" name="surname">
       <Position>7</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="241" name="lastname">
+    <column id="307" parent="241" name="lastname">
       <Position>8</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="241" name="role">
+    <column id="308" parent="241" name="roles">
       <Position>9</Position>
       <Comment>(DC2Type:array)</Comment>
       <DataType>longtext|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="306" parent="241" name="PRIMARY">
+    <index id="309" parent="241" name="UNIQ_8D93D64935C246D5">
+      <ColNames>password</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="310" parent="241" name="UNIQ_8D93D649F85E0677">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="311" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
+    </key>
+    <key id="312" parent="241" name="UNIQ_8D93D64935C246D5">
+      <ColNames>password</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D64935C246D5</UnderlyingIndexName>
+    </key>
+    <key id="313" parent="241" name="UNIQ_8D93D649F85E0677">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649F85E0677</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

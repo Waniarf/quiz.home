@@ -19,6 +19,22 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
+    public function getQuizLeaders($quizId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT g.score,u.username
+            FROM App\Entity\Game g
+            LEFT JOIN g.quiz q
+            LEFT JOIN g.user u
+            WHERE g.timeEnd is not NULL
+            AND q.id = :quizId
+            ORDER BY g.score DESC, DATE_DIFF(g.timeStart,g.timeEnd) ASC'
+        )
+            ->setParameter('quizId', $quizId)
+            ->setMaxResults(3);
+        return $query->getArrayResult();
+    }
 //    /**
 //     * @return Game[] Returns an array of Game objects
 //     */

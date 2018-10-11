@@ -9,7 +9,16 @@
 namespace App\Controller;
 
 
-class QuizQuestionController
-{
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
+class QuizQuestionController extends AbstractController
+{
+    /**
+     * @Route("/quiz/{id}/{questionId}", name="quizGame")
+     */
+    public function quizGame()
+    {
+
+    }
 }

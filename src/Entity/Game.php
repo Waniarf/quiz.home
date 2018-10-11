@@ -21,7 +21,7 @@ class Game
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Quiz", inversedBy="games")
      */
-    private $Quiz;
+    private $quiz;
 
     /**
      * @ORM\Column(type="datetime")
@@ -31,7 +31,7 @@ class Game
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $tineEnd;
+    private $timeEnd;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -42,6 +42,11 @@ class Game
      * @ORM\ManyToMany(targetEntity="App\Entity\Answers", mappedBy="Game")
      */
     private $answers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="games")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -55,12 +60,12 @@ class Game
 
     public function getQuiz(): ?Quiz
     {
-        return $this->Quiz;
+        return $this->quiz;
     }
 
-    public function setQuiz(?Quiz $Quiz): self
+    public function setQuiz(?Quiz $quiz): self
     {
-        $this->Quiz = $Quiz;
+        $this->quiz = $quiz;
 
         return $this;
     }
@@ -77,14 +82,14 @@ class Game
         return $this;
     }
 
-    public function getTineEnd(): ?\DateTimeInterface
+    public function getTimeEnd(): ?\DateTimeInterface
     {
-        return $this->tineEnd;
+        return $this->timeEnd;
     }
 
-    public function setTineEnd(?\DateTimeInterface $tineEnd): self
+    public function setTimeEnd(?\DateTimeInterface $timeEnd): self
     {
-        $this->tineEnd = $tineEnd;
+        $this->timeEnd = $timeEnd;
 
         return $this;
     }
@@ -125,6 +130,18 @@ class Game
             $this->answers->removeElement($answer);
             $answer->removeGame($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

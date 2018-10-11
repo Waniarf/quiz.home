@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% for itemquiz in quiz %}
+        <p>{{ itemquiz.quiz.name }}</p>
+        <p>{{ itemquiz.quiz.description }}</p>
+        {% for leader in itemquiz['leaders'] %}
+            <p>{{ leader.username }} - {{ leader.score }}</p>
+        {% endfor %}
+        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id, 'questionId':0}) }}>Start</a>
+        <hr>
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(quiz) }}
+    </div>
+{% endblock %}
