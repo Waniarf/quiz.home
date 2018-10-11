@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -21,15 +23,15 @@ class Question
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Text;
+    private $text;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="Question")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="question", cascade = {"ALL"})
      */
-    private $Quiz;
+    private $quiz;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\QuestionOption", mappedBy="Question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\QuestionOption", mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $questionOptions;
 
@@ -40,7 +42,7 @@ class Question
 
     public function __construct()
     {
-        $this->Quiz = new ArrayCollection();
+        $this->quiz = new ArrayCollection();
         $this->questionOptions = new ArrayCollection();
         $this->answers = new ArrayCollection();
     }
@@ -52,12 +54,12 @@ class Question
 
     public function getText(): ?string
     {
-        return $this->Text;
+        return $this->text;
     }
 
-    public function setText(string $Text): self
+    public function setText(string $text): self
     {
-        $this->Text = $Text;
+        $this->text = $text;
 
         return $this;
     }
@@ -67,13 +69,13 @@ class Question
      */
     public function getQuiz(): Collection
     {
-        return $this->Quiz;
+        return $this->quiz;
     }
 
     public function addQuiz(Quiz $quiz): self
     {
-        if (!$this->Quiz->contains($quiz)) {
-            $this->Quiz[] = $quiz;
+        if (!$this->quiz->contains($quiz)) {
+            $this->quiz[] = $quiz;
         }
 
         return $this;
@@ -81,8 +83,8 @@ class Question
 
     public function removeQuiz(Quiz $quiz): self
     {
-        if ($this->Quiz->contains($quiz)) {
-            $this->Quiz->removeElement($quiz);
+        if ($this->quiz->contains($quiz)) {
+            $this->quiz->removeElement($quiz);
         }
 
         return $this;
@@ -96,6 +98,10 @@ class Question
         return $this->questionOptions;
     }
 
+    /**
+     * @param QuestionOption $questionOption
+     * @return Question
+     */
     public function addQuestionOption(QuestionOption $questionOption): self
     {
         if (!$this->questionOptions->contains($questionOption)) {
@@ -149,4 +155,5 @@ class Question
 
         return $this;
     }
+
 }

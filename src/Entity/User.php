@@ -20,37 +20,37 @@ class User
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Email;
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Password;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $Username;
+    private $username;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $IsActive;
+    private $isActive;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $Surname;
+    private $surname;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $Lastname;
+    private $lastname;
 
     /**
      * @ORM\Column(type="array")
@@ -64,84 +64,84 @@ class User
 
     public function getEmail(): ?string
     {
-        return $this->Email;
+        return $this->email;
     }
 
-    public function setEmail(string $Email): self
+    public function setEmail(string $email): self
     {
-        $this->Email = $Email;
+        $this->email = $email;
 
         return $this;
     }
 
     public function getPassword(): ?string
     {
-        return $this->Password;
+        return $this->password;
     }
 
-    public function setPassword(string $Password): self
+    public function setPassword(string $password): self
     {
-        $this->Password = $Password;
+        $this->password = $password;
 
         return $this;
     }
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): self
+    public function setUsername(string $username): self
     {
-        $this->Username = $Username;
+        $this->username = $username;
 
         return $this;
     }
 
     public function getIsActive(): ?bool
     {
-        return $this->IsActive;
+        return $this->isActive;
     }
 
-    public function setIsActive(bool $IsActive): self
+    public function setIsActive(bool $isActive): self
     {
-        $this->IsActive = $IsActive;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getSurname(): ?string
     {
-        return $this->Surname;
+        return $this->surname;
     }
 
-    public function setSurname(string $Surname): self
+    public function setSurname(string $surname): self
     {
-        $this->Surname = $Surname;
+        $this->surname = $surname;
 
         return $this;
     }
 
     public function getLastname(): ?string
     {
-        return $this->Lastname;
+        return $this->lastname;
     }
 
-    public function setLastname(string $Lastname): self
+    public function setLastname(string $lastname): self
     {
-        $this->Lastname = $Lastname;
+        $this->lastname = $lastname;
 
         return $this;
     }

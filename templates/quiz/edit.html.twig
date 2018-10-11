@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form, {  'name':'CustomValid','method': 'POST'}) }}
+    {{ form_errors(form) }}
+    {{ form_end(form) }}
+    {{ dump(questions) }}
+    <script>
+        $(document).ready(function() {
+            $('select').selectpicker();
+        } );
+
+    </script>
+{% endblock %}

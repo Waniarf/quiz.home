@@ -21,17 +21,17 @@ class Game
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Quiz", inversedBy="games")
      */
-    private $Quiz;
+    private $quiz;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $TimeStart;
+    private $timeStart;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $TineEnd;
+    private $TimeEnd;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -55,36 +55,36 @@ class Game
 
     public function getQuiz(): ?Quiz
     {
-        return $this->Quiz;
+        return $this->quiz;
     }
 
-    public function setQuiz(?Quiz $Quiz): self
+    public function setQuiz(?Quiz $quiz): self
     {
-        $this->Quiz = $Quiz;
+        $this->quiz = $quiz;
 
         return $this;
     }
 
     public function getTimeStart(): ?\DateTimeInterface
     {
-        return $this->TimeStart;
+        return $this->timeStart;
     }
 
-    public function setTimeStart(\DateTimeInterface $TimeStart): self
+    public function setTimeStart(\DateTimeInterface $timeStart): self
     {
-        $this->TimeStart = $TimeStart;
+        $this->timeStart = $timeStart;
 
         return $this;
     }
 
-    public function getTineEnd(): ?\DateTimeInterface
+    public function getTimeEnd(): ?\DateTimeInterface
     {
-        return $this->TineEnd;
+        return $this->TimeEnd;
     }
 
-    public function setTineEnd(?\DateTimeInterface $TineEnd): self
+    public function setTimeEnd(?\DateTimeInterface $TimeEnd): self
     {
-        $this->TineEnd = $TineEnd;
+        $this->TimeEnd = $TimeEnd;
 
         return $this;
     }
