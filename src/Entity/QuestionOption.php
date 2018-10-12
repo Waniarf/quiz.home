@@ -20,7 +20,7 @@ class QuestionOption
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="questionOptions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Question;
+    private $question;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -39,12 +39,12 @@ class QuestionOption
 
     public function getQuestion(): ?Question
     {
-        return $this->Question;
+        return $this->question;
     }
 
-    public function setQuestion(?Question $Question): self
+    public function setQuestion(?Question $question): self
     {
-        $this->Question = $Question;
+        $this->question = $question;
 
         return $this;
     }

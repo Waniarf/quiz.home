@@ -19,6 +19,36 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function getQuestionByNum(int $quizId, int $num)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT questions
+            FROM App\Entity\Question questions
+            JOIN questions.quiz quiz
+            WHERE quiz.id = :quizId'
+        )
+            ->setParameter('quizId', $quizId);
+        $result = $query->getResult();
+        if(count($result) <= $num)
+            return null;
+        return $result[$num];
+    }
+
+    public function getCountQuestionInQuiz(int $quizId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT count(questions)
+            FROM App\Entity\Question questions
+            JOIN questions.quiz quiz
+            WHERE quiz.id = :quizId'
+        )
+            ->setParameter('quizId', $quizId);
+        $result = $query->getOneOrNullResult();
+        return (int)$result[1];
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

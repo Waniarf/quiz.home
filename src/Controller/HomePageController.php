@@ -31,7 +31,7 @@ class HomePageController extends Controller
         foreach ($quiz as $key => $value){
             $q = $this->getDoctrine()
                 ->getRepository(Game::class)
-                ->getQuizLeaders($value->getId());
+                ->getQuizLeaders($value->getId(), 3);
 
             $data[$value->getId()]['leaders'] = $q;
             $data[$value->getId()]['quiz'] = $value;
@@ -40,7 +40,7 @@ class HomePageController extends Controller
         $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $data,
-            $request->query->getInt('page', 1), 6
+            $request->query->getInt('page', 1), 3
         );
 
         return $this->render(

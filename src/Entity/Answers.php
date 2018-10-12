@@ -21,22 +21,25 @@ class Answers
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Game", inversedBy="answers")
      */
-    private $Game;
+    private $game;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Question;
+    private $question;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isValid;
 
-    public function __construct()
+    public function __construct(?Game $game, ?Question $question, bool $isValid)
     {
-        $this->Game = new ArrayCollection();
+        $this->game = new ArrayCollection();
+        $this->addGame($game);
+        $this->setQuestion($question);
+        $this->isValid = $isValid;
     }
 
     public function getId(): ?int
@@ -49,13 +52,13 @@ class Answers
      */
     public function getGame(): Collection
     {
-        return $this->Game;
+        return $this->game;
     }
 
     public function addGame(Game $game): self
     {
-        if (!$this->Game->contains($game)) {
-            $this->Game[] = $game;
+        if (!$this->game->contains($game)) {
+            $this->game[] = $game;
         }
 
         return $this;
@@ -63,8 +66,8 @@ class Answers
 
     public function removeGame(Game $game): self
     {
-        if ($this->Game->contains($game)) {
-            $this->Game->removeElement($game);
+        if ($this->game->contains($game)) {
+            $this->game->removeElement($game);
         }
 
         return $this;
@@ -72,12 +75,12 @@ class Answers
 
     public function getQuestion(): ?Question
     {
-        return $this->Question;
+        return $this->question;
     }
 
-    public function setQuestion(?Question $Question): self
+    public function setQuestion(?Question $question): self
     {
-        $this->Question = $Question;
+        $this->question = $question;
 
         return $this;
     }

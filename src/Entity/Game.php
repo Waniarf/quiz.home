@@ -48,9 +48,13 @@ class Game
      */
     private $user;
 
-    public function __construct()
+    public function __construct(?Quiz $quiz, ?User $user)
     {
         $this->answers = new ArrayCollection();
+        $this->timeStart = new \DateTime();
+        $this->quiz = $quiz;
+        $this->user = $user;
+        $this->score = 0;
     }
 
     public function getId(): ?int

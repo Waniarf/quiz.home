@@ -7,7 +7,7 @@
         {% for leader in itemquiz['leaders'] %}
             <p>{{ leader.username }} - {{ leader.score }}</p>
         {% endfor %}
-        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id, 'questionId':0}) }}>Start</a>
+        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }}>Start</a>
         <hr>
     {% endfor %}
     <div class="navigation">

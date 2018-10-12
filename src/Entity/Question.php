@@ -26,7 +26,7 @@ class Question
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="Question")
      */
-    private $Quiz;
+    private $quiz;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\QuestionOption", mappedBy="Question", orphanRemoval=true)
@@ -40,7 +40,7 @@ class Question
 
     public function __construct()
     {
-        $this->Quiz = new ArrayCollection();
+        $this->quiz = new ArrayCollection();
         $this->questionOptions = new ArrayCollection();
         $this->answers = new ArrayCollection();
     }
@@ -67,13 +67,13 @@ class Question
      */
     public function getQuiz(): Collection
     {
-        return $this->Quiz;
+        return $this->quiz;
     }
 
     public function addQuiz(Quiz $quiz): self
     {
-        if (!$this->Quiz->contains($quiz)) {
-            $this->Quiz[] = $quiz;
+        if (!$this->quiz->contains($quiz)) {
+            $this->quiz[] = $quiz;
         }
 
         return $this;
@@ -81,8 +81,8 @@ class Question
 
     public function removeQuiz(Quiz $quiz): self
     {
-        if ($this->Quiz->contains($quiz)) {
-            $this->Quiz->removeElement($quiz);
+        if ($this->quiz->contains($quiz)) {
+            $this->quiz->removeElement($quiz);
         }
 
         return $this;
