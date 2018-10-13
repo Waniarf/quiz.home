@@ -34,9 +34,13 @@ class Answers
      */
     private $isValid;
 
-    public function __construct()
+    public function __construct(?Game $game, ?Question $question, bool $isValid)
     {
         $this->game = new ArrayCollection();
+
+        $this->addGame($game);
+        $this->setQuestion($question);
+        $this->isValid = $isValid;
     }
 
     public function getId(): ?int

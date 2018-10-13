@@ -41,7 +41,9 @@ class Quiz
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Question", mappedBy="quiz", cascade={"ALL"}, )
      */
-    private $question;
+
+    private $questions;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="Quiz")
@@ -50,7 +52,8 @@ class Quiz
 
     public function __construct()
     {
-        $this->question = new ArrayCollection();
+        $this->questions = new ArrayCollection();
+      
         $this->games = new ArrayCollection();
     }
 
@@ -110,15 +113,19 @@ class Quiz
     /**
      * @return Collection|Question[]
      */
-    public function getQuestion(): Collection
+    public function getQuestions(): Collection
     {
-        return $this->question;
+
+        return $this->questions;
+
     }
 
     public function addQuestion(Question $question): self
     {
-        if (!$this->question->contains($question)) {
-            $this->question[] = $question;
+
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+
             $question->addQuiz($this);
         }
 
@@ -127,8 +134,9 @@ class Quiz
 
     public function removeQuestion(Question $question): self
     {
-        if ($this->question->contains($question)) {
-            $this->question->removeElement($question);
+
+        if ($this->questions->contains($question)) {
+            $this->questions->removeElement($question);
             $question->removeQuiz($this);
         }
 

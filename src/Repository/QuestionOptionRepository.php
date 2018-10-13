@@ -19,6 +19,19 @@ class QuestionOptionRepository extends ServiceEntityRepository
         parent::__construct($registry, QuestionOption::class);
     }
 
+    public function getOptions(int $questionId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT o
+            FROM App\Entity\QuestionOption o
+            LEFT JOIN o.question q
+            WHERE q.id = :questionId'
+        )
+            ->setParameter('questionId', $questionId);
+        return $query->getArrayResult();
+    }
+
 //    /**
 //     * @return QuestionOption[] Returns an array of QuestionOption objects
 //     */

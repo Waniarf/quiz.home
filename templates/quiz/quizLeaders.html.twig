@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2>Your place: {{ num }}</h2>
+    Leaders:
+    {% for leader in leaders %}
+        <p>{{ leader['username'] }} - {{ leader['score'] }}</p>
+    {% endfor %}
+{% endblock %}

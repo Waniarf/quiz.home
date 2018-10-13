@@ -19,21 +19,14 @@ class QuizRepository extends ServiceEntityRepository
         parent::__construct($registry, Quiz::class);
     }
 
-    public function getQuizQuestion($quizId)
+
+    public function getAllActiveQuiz()
     {
-        $em = $this->getEntityManager();
-        $query = $em->createQuery(
-            'SELECT *
-            FROM App\Entity\Game g
-            LEFT JOIN g.quiz q
-            LEFT JOIN g.user u
-            WHERE g.timeEnd is not NULL
-            AND q.id = :quizId
-            ORDER BY g.score DESC, DATE_DIFF(g.timeStart,g.timeEnd) ASC'
-        )
-            ->setParameter('quizId', $quizId)
-            ->setMaxResults(3);
-        return $query->getArrayResult();
+        $db = $this->createQueryBuilder('q')
+            ->andWhere('q.isActive = true')
+            ->getQuery();
+      
+        return $db->execute();
     }
 //    /**
 //     * @return Quiz[] Returns an array of Quiz objects

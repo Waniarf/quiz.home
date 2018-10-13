@@ -31,7 +31,8 @@ class Game
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $TimeEnd;
+  
+    private $timeEnd;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -43,9 +44,18 @@ class Game
      */
     private $answers;
 
-    public function __construct()
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="games")
+     */
+    private $user;
+
+    public function __construct(?Quiz $quiz, ?User $user)
     {
         $this->answers = new ArrayCollection();
+        $this->timeStart = new \DateTime();
+        $this->quiz = $quiz;
+        $this->user = $user;
+        $this->score = 0;
     }
 
     public function getId(): ?int
@@ -79,12 +89,14 @@ class Game
 
     public function getTimeEnd(): ?\DateTimeInterface
     {
-        return $this->TimeEnd;
+
+        return $this->timeEnd;
     }
 
-    public function setTimeEnd(?\DateTimeInterface $TimeEnd): self
+    public function setTimeEnd(?\DateTimeInterface $timeEnd): self
     {
-        $this->TimeEnd = $TimeEnd;
+        $this->timeEnd = $timeEnd;
+
 
         return $this;
     }
@@ -125,6 +137,18 @@ class Game
             $this->answers->removeElement($answer);
             $answer->removeGame($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
