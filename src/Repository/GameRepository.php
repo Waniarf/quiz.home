@@ -36,6 +36,22 @@ class GameRepository extends ServiceEntityRepository
         return $query->getArrayResult();
     }
 
+    public function getAllQuizLeaders(int $quizId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT g.score,u.username, g.id as gameId, u.id as userId
+            FROM App\Entity\Game g
+            LEFT JOIN g.quiz q
+            LEFT JOIN g.user u
+            WHERE g.timeEnd is not NULL
+            AND q.id = :quizId
+            ORDER BY g.score DESC, DATE_DIFF(g.timeStart,g.timeEnd) ASC'
+        )
+            ->setParameter('quizId', $quizId);
+        return $query->getArrayResult();
+    }
+
     public function getGame(int $quizId, int $userId)
     {
         $em = $this->getEntityManager();

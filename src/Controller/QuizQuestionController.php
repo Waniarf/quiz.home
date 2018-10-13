@@ -23,7 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class QuizQuestionController extends AbstractController
 {
     /**
-     * @Route("/quiz/{id}", name="quizGame")
+     * @Route("/quiz/{id}", name="quizGame", requirements={"id"="\d+"})
      * @ParamConverter("quiz", options={"id" = "id"})
      */
     public function quizGame(Quiz $quiz, Request $request)
@@ -41,8 +41,24 @@ class QuizQuestionController extends AbstractController
             $em->flush();
         }
 
-        if($game->getTimeEnd() !== null)
-            return $this->render('quiz/quizLeaders.html.twig');
+        if($game->getTimeEnd() !== null) {
+
+            $leaders = $this->getDoctrine()
+                ->getRepository(Game::class)
+                ->getAllQuizLeaders($quiz->getId());
+            $num = 0;
+            foreach ($leaders as $key => $leader) {
+                if($leader["userId"] == $user->getId() && $leader["gameId"] == $game->getId())
+                    $num = $key+1;
+            }
+
+            return $this->render('quiz/quizLeaders.html.twig',
+                [
+                    'leaders' => array_slice($leaders, 0, 3),
+                    'num' => $num
+                ]
+            );
+        }
 
         $answersNum = $this->getDoctrine()
             ->getRepository(Answers::class)
@@ -67,11 +83,13 @@ class QuizQuestionController extends AbstractController
     }
 
     /**
-     * @Route("/quiz/{id}/check", name="answerCheck")
+     * @Route("/quiz/{id}/check", name="answerCheck", requirements={"id"="\d+"})
      * @ParamConverter("quiz", options={"id" = "id"})
      */
     public function checkAnswer(Quiz $quiz, Request $request)
     {
+        //TODO check optionId
+
         $user = $this->getUser();
 
         $game = $this->getDoctrine()
