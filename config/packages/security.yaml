@@ -30,9 +30,10 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/quiz/, roles: ROLE_USER }
         - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+
