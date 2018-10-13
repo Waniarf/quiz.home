@@ -19,6 +19,19 @@ class AnswersRepository extends ServiceEntityRepository
         parent::__construct($registry, Answers::class);
     }
 
+    public function getCountAnswers(int $gameId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT count(a)
+            FROM App\Entity\Answers a
+            LEFT JOIN a.game g
+            WHERE g.id = :gameId'
+        )
+            ->setParameter('gameId', $gameId);
+        $result = $query->getOneOrNullResult();
+        return (int)$result[1];
+    }
 //    /**
 //     * @return Answers[] Returns an array of Answers objects
 //     */

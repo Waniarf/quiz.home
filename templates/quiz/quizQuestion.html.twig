@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>{{ quiz.name }}</h1>
+    <h2>{{ question.text }}</h2>
+    {% for option in options %}
+        <div class="radio">
+            <label><input type="radio" name="optradio" id={{ option['id'] }}> {{ option['text'] }}</label>
+        </div>
+    {% endfor %}
+    <div>
+        <p class="alert alert-danger" id="incorrect" style="display: none;">incorrect</p>
+        <p class="alert alert-success" id="correct" style="display: none;">correct</p>
+    </div>
+    <div>
+        <br>
+        <button type="button" onclick="check()" class="btn btn-default" id="resp">Respond</button>
+        <a class="btn btn-success" style="display: none;" id="next" href={{ path("quizGame", {'id':quiz.id}) }} >Next</a>
+    </div>
+    <script>
+         function check() {
+            $.ajax({
+                url: "{{ path("answerCheck", {'id':quiz.id}) }}",
+                type: "POST",
+                dataType: "json",
+                async: true,
+                data: {
+                    "optionId": $('input:radio:checked').attr('id')
+                },
+                success: function(data){
+                    if(data['result'] == true){
+                        $("#correct").show();
+                    } else {
+                        $("#incorrect").show();
+                    }
+                    $("#resp").hide();
+                    $("#next").show();
+                }
+            });
+            return false;
+        }
+
+    </script>
+{% endblock %}

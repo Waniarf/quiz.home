@@ -19,6 +19,43 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function getUserByToken(string $token, string $typeToken){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT user
+            FROM App\Entity\User user
+            JOIN user.token token
+            WHERE token.token = :token 
+            AND token.type = :typeToken
+            AND token.used = false'
+        )
+            ->setParameter('token', $token)
+            ->setParameter('typeToken', $typeToken);
+        return $query->getOneOrNullResult();
+    }
+
+    public function getUserByUsername(string $username)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT user
+            FROM App\Entity\User user
+            WHERE user.username = :username'
+        )
+            ->setParameter('username', $username);
+        return $query->getOneOrNullResult();
+    }
+    public function getUserByEmail(string $email)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT user
+            FROM App\Entity\User user
+            WHERE user.email = :email'
+        )
+            ->setParameter('email', $email);
+        return $query->getOneOrNullResult();
+    }
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

@@ -21,27 +21,29 @@ class Quiz
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Description;
+    private $description;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $CreateData;
+    private $createData;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $IsActive;
+    private $isActive;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Question", mappedBy="Quiz")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Question", mappedBy="quiz", cascade={"ALL"}, )
      */
-    private $Question;
+
+    private $questions;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="Quiz")
@@ -50,7 +52,8 @@ class Quiz
 
     public function __construct()
     {
-        $this->Question = new ArrayCollection();
+        $this->questions = new ArrayCollection();
+      
         $this->games = new ArrayCollection();
     }
 
@@ -61,48 +64,48 @@ class Quiz
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): self
+    public function setDescription(string $description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
 
     public function getCreateData(): ?\DateTimeInterface
     {
-        return $this->CreateData;
+        return $this->createData;
     }
 
-    public function setCreateData(\DateTimeInterface $CreateData): self
+    public function setCreateData(\DateTimeInterface $createData): self
     {
-        $this->CreateData = $CreateData;
+        $this->createData = $createData;
 
         return $this;
     }
 
     public function getIsActive(): ?bool
     {
-        return $this->IsActive;
+        return $this->isActive;
     }
 
-    public function setIsActive(bool $IsActive): self
+    public function setIsActive(bool $isActive): self
     {
-        $this->IsActive = $IsActive;
+        $this->isActive = $isActive;
 
         return $this;
     }
@@ -110,15 +113,19 @@ class Quiz
     /**
      * @return Collection|Question[]
      */
-    public function getQuestion(): Collection
+    public function getQuestions(): Collection
     {
-        return $this->Question;
+
+        return $this->questions;
+
     }
 
     public function addQuestion(Question $question): self
     {
-        if (!$this->Question->contains($question)) {
-            $this->Question[] = $question;
+
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+
             $question->addQuiz($this);
         }
 
@@ -127,8 +134,9 @@ class Quiz
 
     public function removeQuestion(Question $question): self
     {
-        if ($this->Question->contains($question)) {
-            $this->Question->removeElement($question);
+
+        if ($this->questions->contains($question)) {
+            $this->questions->removeElement($question);
             $question->removeQuiz($this);
         }
 
