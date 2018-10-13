@@ -19,11 +19,13 @@ class QuizRepository extends ServiceEntityRepository
         parent::__construct($registry, Quiz::class);
     }
 
+
     public function getAllActiveQuiz()
     {
         $db = $this->createQueryBuilder('q')
             ->andWhere('q.isActive = true')
             ->getQuery();
+      
         return $db->execute();
     }
 //    /**

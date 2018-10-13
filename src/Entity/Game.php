@@ -31,6 +31,7 @@ class Game
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
+  
     private $timeEnd;
 
     /**
@@ -88,12 +89,14 @@ class Game
 
     public function getTimeEnd(): ?\DateTimeInterface
     {
+
         return $this->timeEnd;
     }
 
     public function setTimeEnd(?\DateTimeInterface $timeEnd): self
     {
         $this->timeEnd = $timeEnd;
+
 
         return $this;
     }

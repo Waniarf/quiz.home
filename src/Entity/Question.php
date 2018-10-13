@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -24,17 +26,17 @@ class Question
     private $text;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="Question")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Quiz", inversedBy="question", cascade = {"persist"})
      */
     private $quiz;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\QuestionOption", mappedBy="Question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\QuestionOption", mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $questionOptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Answers", mappedBy="Question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Answers", mappedBy="question", orphanRemoval=true)
      */
     private $answers;
 
@@ -96,6 +98,10 @@ class Question
         return $this->questionOptions;
     }
 
+    /**
+     * @param QuestionOption $questionOption
+     * @return Question
+     */
     public function addQuestionOption(QuestionOption $questionOption): self
     {
         if (!$this->questionOptions->contains($questionOption)) {
@@ -149,4 +155,5 @@ class Question
 
         return $this;
     }
+
 }

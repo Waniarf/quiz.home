@@ -33,16 +33,19 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
+
     private $plainPassword;
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
      */
+
     private $username;
 
     /**
      * @ORM\Column(type="boolean")token
      */
+
     private $isActive;
 
     /**
@@ -174,6 +177,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function getLastname(): ?string
     {
         return $this->lastname;
+
     }
 
     public function setLastname(string $lastname): self

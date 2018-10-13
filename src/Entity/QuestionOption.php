@@ -18,7 +18,7 @@ class QuestionOption
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="questionOptions")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="question_id", nullable=false, referencedColumnName="id")
      */
     private $question;
 

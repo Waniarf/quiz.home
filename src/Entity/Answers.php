@@ -37,6 +37,7 @@ class Answers
     public function __construct(?Game $game, ?Question $question, bool $isValid)
     {
         $this->game = new ArrayCollection();
+
         $this->addGame($game);
         $this->setQuestion($question);
         $this->isValid = $isValid;
