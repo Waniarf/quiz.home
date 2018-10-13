@@ -35,6 +35,20 @@ class QuizController extends AbstractController
     }
 
     /**
+    * @Route("admin/quiz/info/{id}", name="quiz_info")
+    */
+    public function info(\Symfony\Component\HttpFoundation\Request $request, $id, QuizRepository $quizRepository)
+    {
+        $quiz = $quizRepository->find($id);
+        $questions = $quiz->getQuestion()->toArray();
+        return $this->render('quiz/info.html.twig', [
+            'controller_name' => 'QuizController',
+            'quiz' => $quiz,
+            'questions' => $questions,
+        ]);
+    }
+
+    /**
      * @Route("admin/quiz/new", name="quiz_new")
      */
     public function new(\Symfony\Component\HttpFoundation\Request $request)
@@ -48,9 +62,8 @@ class QuizController extends AbstractController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
             $quiz = $form->getData();
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($quiz);
             $em->flush();
@@ -74,21 +87,51 @@ class QuizController extends AbstractController
 
         $form = $this->createForm(EditQuizType::class, $quiz);
         $form->handleRequest($request);
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
             $questionId = $form['question']->getViewData();
             $question = $questionRepository->find(['id' => $questionId]);
             $quiz->addQuestion($question);
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-                return $this->redirectToRoute('quiz_edit', array('id' => $id));
-            }
+            return $this->redirectToRoute('quiz_edit', array('id' => $id));
+        }
         return $this->render('quiz/edit.html.twig', [
             'controller_name' => 'QuizController',
             'form' => $form->createView(),
             'questions' => $questions,
-
+            'quiz' => $quiz,
         ]);
     }
 
+    /**
+     * @Route("admin/quiz/delete/{quizID}", name="quiz_delete")
+     */
+    public function deleteQuiz(QuestionRepository $questionRepository, QuizRepository $quizRepository, $quizID, $questionID,   \Symfony\Component\HttpFoundation\Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $quiz = $quizRepository->find($quizID);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($quiz);
+            $em->flush();
+        } else {
+            return $this->redirectToRoute('quiz');
+        }
+    }
+
+    /**
+     * @Route("admin/quiz/delete/{quizID}/{questionID}", name="quiz_question_delete")
+     */
+    public function deleteQuestion(QuestionRepository $questionRepository, QuizRepository $quizRepository, $quizID, $questionID,   \Symfony\Component\HttpFoundation\Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $quiz = $quizRepository->find($quizID);
+            $question = $questionRepository->find($questionID);
+            $quiz->removeQuestion($question);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+        } else {
+            return $this->redirectToRoute('quiz');
+        }
+    }
 }

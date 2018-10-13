@@ -19,7 +19,7 @@
         </thead>
         {% for quiz  in quizs %}
             <tr>
-                <td>{{ quiz.id }}</td>
+                <td><a href = "/admin/quiz/info/{{ quiz.id }}">{{ quiz.id }}</a></td>
                 <td>{{ quiz.name }}</td>
                 <td>{{ quiz.description }}</td>
                 <td>{{ quiz.CreateData|date("H:m:s d/m/Y") }}</td>

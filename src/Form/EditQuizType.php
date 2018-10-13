@@ -34,7 +34,7 @@ class EditQuizType extends AbstractType
                 ]
             ])
             ->add('IsActive', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Yes' => true,
                     'No' => false,
                 ),
@@ -49,10 +49,9 @@ class EditQuizType extends AbstractType
                 'multiple' => false,
                 'attr' => [
                     'class' => 'selectpicker',
-                    'data-live-search'=>'true',
+                    'data-live-search' => 'true',
                 ]
             ))
-
             ->add('save', SubmitType::class, array('label' => 'Save'))
 //            ->add('createData')
 //            ->add('isActive')

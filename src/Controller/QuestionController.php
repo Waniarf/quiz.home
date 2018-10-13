@@ -32,8 +32,7 @@ class QuestionController extends AbstractController
     public function info(QuestionRepository $questionRepository, $id)
     {
         $question = $questionRepository->findOneBy(['id' => $id]);
-        if (!$question)
-        {
+        if (!$question) {
             return $this->redirectToRoute('question');
         }
         return $this->render('question/info.html.twig', [
@@ -58,7 +57,7 @@ class QuestionController extends AbstractController
         $question->addQuestionOption($option4);
         $form = $this->createForm(CreateQuestionType::class, $question);
         $form->handleRequest($request);
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
             $question = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
@@ -78,13 +77,12 @@ class QuestionController extends AbstractController
     {
         $question = $questionRepository->findOneBy(['id' => $id]);
 
-        if (!$question)
-        {
+        if (!$question) {
             return $this->redirectToRoute('question');
         }
         $form = $this->createForm(CreateQuestionType::class, $question);
         $form->handleRequest($request);
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
 
             $question = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -106,18 +104,13 @@ class QuestionController extends AbstractController
      */
     public function delete(QuestionRepository $questionRepository, $id, Request $request)
     {
-
-        if($request->isXmlHttpRequest())
-        {
+        if ($request->isXmlHttpRequest()) {
             $question = $questionRepository->findOneBy(['id' => $id]);
             $em = $this->getDoctrine()->getManager();
             $em->remove($question);
             $em->flush();
-        }
-        else {
+        } else {
             return $this->redirectToRoute('question');
         }
-
-
     }
 }

@@ -5,7 +5,8 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,9 +15,6 @@
 {% endblock %}
 
 {% block body %}
-
-
-
     {{ form_start(form, {  'name':'CustomValid','method': 'POST'}) }}
     {{ form_errors(form) }}
     {{ form_row(form.name) }}
@@ -28,17 +26,16 @@
             <tr>
                 <th width="5%">Index</th>
                 <th>Text</th>
-                <th width = "7%" data-orderable="false">Edit</th>
-                <th width = "7%" data-orderable="false">Delete</th>
+                <th width="7%" data-orderable="false">Edit</th>
+                <th width="7%" data-orderable="false">Delete</th>
             </tr>
             </thead>
-
             {% for question  in questions %}
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ question.Text }}</td>
-                    <td><a href = "/admin/question/edit/{{ question.id }}">Edit</a></td>
-                    <td>Delete</td>
+                    <td><a href="/admin/question/edit/{{ question.id }}">Edit</a></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ question.id }}>delete</button></td>
                 </tr>
             {% endfor %}
             <tfoot>
@@ -51,18 +48,42 @@
             </tfoot>
         </table>
     {% else %}
-    Not found questions for this quiz
+        Not found questions for this quiz
     {% endif %}
     {{ form_row(form.question) }}
     {{ form_end(form) }}
-
+    <div style = "margin :10px; margin-left: 0;"><a href = "/admin/question/new"><button class="btn btn-dark" align = "right">Create new question</button></a><br></div>
     </div>
-
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.selectpicker').selectpicker();
-        } );
+        });
 
+        $('[name = "delete"]').click(function() {
+            $('#exampleModal').modal('toggle');
+            $.ajax({
+                type: "GET",
+                url: `/admin/quiz/delete/${quizId}/${id}`,
+                datatype: "json",
+                success: function(data) {
+
+                }
+            });
+            tr.empty();
+        });
+        $('.btn').on('click', function() {
+            window.tr =  $(this).parents("tr:first");
+        });
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            window.quizId = {{ quiz.id }};
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            window.id = button.data('id'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and   then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('Delete record ' + id)
+        })
     </script>
 
 {% endblock %}
