@@ -31,6 +31,10 @@ class QuizQuestionController extends AbstractController
     {
         $user = $this->getUser();
 
+        if(!$quiz->getIsActive()) {
+            return $this->redirectToRoute('quizList');
+        }
+
         $game = $this->getDoctrine()
             ->getRepository(Game::class)
             ->getGame($quiz->getId(), $user->getId());
