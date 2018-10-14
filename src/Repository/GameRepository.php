@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,7 +20,13 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
-    public function getQuizLeaders(int $quizId, int $limit)
+    /**
+     * @param int $quizId
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getQuizLeaders(int $quizId, int $limit): array
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
@@ -36,7 +43,12 @@ class GameRepository extends ServiceEntityRepository
         return $query->getArrayResult();
     }
 
-    public function getAllQuizLeaders(int $quizId)
+    /**
+     * @param int $quizId
+     *
+     * @return array
+     */
+    public function getAllQuizLeaders(int $quizId): array
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
@@ -52,6 +64,14 @@ class GameRepository extends ServiceEntityRepository
         return $query->getArrayResult();
     }
 
+    /**
+     * @param int $quizId
+     * @param int $userId
+     *
+     * @return Game
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getGame(int $quizId, int $userId)
     {
         $em = $this->getEntityManager();
@@ -67,7 +87,15 @@ class GameRepository extends ServiceEntityRepository
             ->setParameter('quizId', $quizId);
         return $query->getOneOrNullResult();
     }
-    public function getCountGame(int $quizId)
+
+    /**
+     * @param int $quizId
+     *
+     * @return int
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountGame(int $quizId): int
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(

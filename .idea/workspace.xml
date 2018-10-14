@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a2d2cbd-6fa3-4e43-ae6e-f51bd4d97de7" name="Default Changelist" comment="fix bug in quiz game">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuizList.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuizList.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/QuizQuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizQuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AnswersRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AnswersRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EmailRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EmailRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/GameRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GameRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/PasswordRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PasswordRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuestionRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuestionRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TokenRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TokenRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/MailSender.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MailSender.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -144,6 +156,13 @@
         <item name="quizdb@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="quizdb: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="answers: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="quizdb@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="quizdb: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="quiz: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -155,53 +174,54 @@
         <counts>
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="DATABASE/430b1eb1-6a6c-4458-928e-5f1b24da2043" value="4" />
-          <entry key="answers" value="2" />
+          <entry key="answers" value="4" />
           <entry key="answers_game" value="1" />
           <entry key="console" value="1" />
           <entry key="dist" value="1" />
-          <entry key="env" value="5" />
-          <entry key="game" value="3" />
-          <entry key="gitignore" value="3" />
+          <entry key="env" value="6" />
+          <entry key="game" value="5" />
+          <entry key="gitignore" value="4" />
           <entry key="json" value="1" />
           <entry key="lock" value="1" />
-          <entry key="php" value="156" />
+          <entry key="php" value="204" />
           <entry key="quiz" value="1" />
           <entry key="sql" value="2" />
-          <entry key="twig" value="45" />
-          <entry key="yaml" value="21" />
+          <entry key="twig" value="46" />
+          <entry key="yaml" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="6" />
-          <entry key="Database Element" value="7" />
+          <entry key=".env file" value="7" />
+          <entry key="Database Element" value="11" />
           <entry key="JSON" value="1" />
-          <entry key="PHP" value="157" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="PHP" value="205" />
+          <entry key="PLAIN_TEXT" value="5" />
           <entry key="Scratch" value="2" />
-          <entry key="Twig" value="45" />
+          <entry key="Twig" value="46" />
           <entry key="UML" value="4" />
-          <entry key="YAML" value="21" />
+          <entry key="YAML" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="37" />
-          <entry key="dummy" value="1" />
+          <entry key="dummy" value="14" />
           <entry key="env" value="24" />
           <entry key="gitignore" value="7" />
-          <entry key="php" value="9002" />
-          <entry key="twig" value="1590" />
+          <entry key="php" value="9406" />
+          <entry key="twig" value="1591" />
           <entry key="txt" value="28" />
           <entry key="yaml" value="204" />
         </counts>
@@ -209,10 +229,10 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="24" />
-          <entry key="PHP" value="9002" />
-          <entry key="PLAIN_TEXT" value="36" />
+          <entry key="PHP" value="9406" />
+          <entry key="PLAIN_TEXT" value="49" />
           <entry key="Scratch" value="37" />
-          <entry key="Twig" value="1590" />
+          <entry key="Twig" value="1591" />
           <entry key="YAML" value="204" />
         </counts>
       </usages-collector>
@@ -228,7 +248,7 @@
       <usages-collector id="statistics.php.composer.command.options" />
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
-          <entry key="git.branch.checkout.local" value="2" />
+          <entry key="git.branch.checkout.local" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -241,11 +261,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/QuizQuestionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-405">
+            <state relative-caret-position="-1249">
               <caret line="38" column="32" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="32" />
-              <folding>
-                <element signature="e#115#138#0#PHP" expanded="true" />
-              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/HomePageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -258,11 +284,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/GameRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
+            <state relative-caret-position="900">
               <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
-              <folding>
-                <element signature="e#34#54#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -271,7 +294,16 @@
         <entry file="file://$PROJECT_DIR$/src/Repository/QuizRepository.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/QuizListController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-64">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -279,18 +311,6 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/QuestionController.php">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/QuizList.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
-              <folding>
-                <element signature="e#116#136#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -313,7 +333,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/Other/MailSender.php" />
         <option value="$PROJECT_DIR$/templates/mail/mail.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/TokenRepository.php" />
         <option value="$PROJECT_DIR$/templates/error/error.html.twig" />
         <option value="$PROJECT_DIR$/config/packages/translation.yaml" />
         <option value="$PROJECT_DIR$/templates/registration/sendEmailMessage.html.twig" />
@@ -325,38 +344,42 @@
         <option value="$PROJECT_DIR$/templates/registration/registration.html.twig" />
         <option value="$PROJECT_DIR$/templates/recovery/email.html.twig" />
         <option value="$PROJECT_DIR$/templates/recovery/sendEmailMessage.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/Form/RecoveryPasswordType.php" />
-        <option value="$PROJECT_DIR$/src/Service/MailSender.php" />
         <option value="$PROJECT_DIR$/templates/recovery/recovery.html.twig" />
         <option value="$PROJECT_DIR$/templates/recovery/recoverySuccess.html.twig" />
-        <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/SecurityController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/src/Entity/Quiz.php" />
         <option value="$PROJECT_DIR$/src/Entity/Question.php" />
         <option value="$PROJECT_DIR$/src/Entity/QuestionOption.php" />
-        <option value="$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/Answers.php" />
         <option value="$PROJECT_DIR$/src/Entity/Game.php" />
-        <option value="$PROJECT_DIR$/src/Repository/QuestionRepository.php" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/AnswersRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/Controller/quizList.php" />
         <option value="$PROJECT_DIR$/templates/homepage/homepage.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/HomePageController.php" />
         <option value="$PROJECT_DIR$/templates/quiz/quizList.html.twig" />
         <option value="$PROJECT_DIR$/templates/quiz/quizLeaders.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/templates/quiz/quizQuestion.html.twig" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/Repository/GameRepository.php" />
-        <option value="$PROJECT_DIR$/src/Repository/QuizRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/QuizQuestionController.php" />
         <option value="$PROJECT_DIR$/src/Controller/QuizList.php" />
+        <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/AnswersRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/EmailRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/PasswordRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/QuizRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/TokenRepository.php" />
+        <option value="$PROJECT_DIR$/src/Controller/HomePageController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/QuizListController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/QuizQuestionController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/GameRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
+        <option value="$PROJECT_DIR$/src/Repository/QuestionRepository.php" />
+        <option value="$PROJECT_DIR$/src/Service/MailSender.php" />
       </list>
     </option>
   </component>
@@ -472,8 +495,8 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="25" />
-    <option name="width" value="950" />
-    <option name="height" value="789" />
+    <option name="width" value="1920" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -504,6 +527,12 @@
               <item name="quiz.home" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quiz.home" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quiz.home" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -553,6 +582,7 @@
       <workItem from="1539162305222" duration="28380000" />
       <workItem from="1539261610586" duration="40770000" />
       <workItem from="1539514786324" duration="9670000" />
+      <workItem from="1539542952677" duration="6693000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug in quiz game">
       <created>1539522591784</created>
@@ -565,7 +595,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160551000" />
+    <option name="totallyTimeSpent" value="167244000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,7 +610,7 @@
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.12966916" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.1307364" />
       <window_info id="Favorites" order="1" sideWeight="0.5007072" side_tool="true" weight="0.25382933" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -599,7 +629,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.38260406" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3815368" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,49 +669,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix bug in quiz game" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://DATABASE/430b1eb1-6a6c-4458-928e-5f1b24da2043">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>430b1eb1-6a6c-4458-928e-5f1b24da2043</OriginalElement>
-          <nodes>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.answers</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.token</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.answers_game</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.game</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.question</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.quiz</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.question_option</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.question_quiz</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.migration_versions</node>
-            <node x="" y="">430b1eb1-6a6c-4458-928e-5f1b24da2043.TABLE:quizdb.user</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.4490177736202058" x="525.0" y="352.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Key columns</Category>
-            <Category>Columns</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/recovery/recovery.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -696,65 +683,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/MailSender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TokenRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/UserType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="21" column="75" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/registration.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="60" column="8" lean-forward="true" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/RecoveryPasswordType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/AnswersRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/EmailRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/PasswordRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -793,26 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="66" column="32" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <element signature="e#140#205#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/quiz/quizList.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -838,20 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/QuestionRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -893,43 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="102" column="9" lean-forward="true" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
-          <folding>
-            <element signature="e#141#162#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-348">
-          <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding>
-            <element signature="e#139#160#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Answers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Question.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -937,30 +798,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HomePageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-          <folding>
-            <element signature="e#116#136#0#PHP" expanded="true" />
-          </folding>
+    <entry file="das://430b1eb1-6a6c-4458-928e-5f1b24da2043/schema/quizdb/table/quiz">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/QuestionController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/QuizRepository.php">
+    <entry file="file://$PROJECT_DIR$/templates/security/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        <state relative-caret-position="405">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/QuizController.php">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Answers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="26" column="79" lean-forward="true" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="das://430b1eb1-6a6c-4458-928e-5f1b24da2043/schema/quizdb/table/game">
@@ -977,40 +846,164 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://430b1eb1-6a6c-4458-928e-5f1b24da2043/schema/quizdb/table/quiz">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/TokenRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/QuestionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/QuestionOptionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/PasswordRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/EmailRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/AnswersRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/MailSender.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="95" column="19" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/UserType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="21" column="75" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/RecoveryPasswordType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/EditQuizType.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1065">
+          <caret line="71" column="71" selection-start-line="71" selection-start-column="71" selection-end-line="71" selection-end-column="71" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-814">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <folding>
+            <element signature="e#139#160#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-165">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="31" />
+          <folding>
+            <element signature="e#141#162#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/GameRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
+        <state relative-caret-position="900">
           <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/QuizList.php">
+    <entry file="file://$PROJECT_DIR$/src/Repository/QuizRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#116#136#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/QuestionController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/QuizController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HomePageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/QuizListController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-64">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/QuizQuestionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
+        <state relative-caret-position="-1249">
           <caret line="38" column="32" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="32" />
-          <folding>
-            <element signature="e#115#138#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,8 +20,10 @@ class QuizRepository extends ServiceEntityRepository
         parent::__construct($registry, Quiz::class);
     }
 
-
-    public function getAllActiveQuiz()
+    /**
+     * @return array
+     */
+    public function getAllActiveQuiz(): array
     {
         $db = $this->createQueryBuilder('q')
             ->andWhere('q.isActive = true')

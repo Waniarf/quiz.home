@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,7 +20,12 @@ class QuestionOptionRepository extends ServiceEntityRepository
         parent::__construct($registry, QuestionOption::class);
     }
 
-    public function getOptions(int $questionId)
+    /**
+     * @param int $questionId
+     *
+     * @return array
+     */
+    public function getOptions(int $questionId): array
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
