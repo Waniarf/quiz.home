@@ -17,6 +17,7 @@ use App\Entity\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -48,8 +49,10 @@ class QuizQuestionController extends AbstractController
                 ->getAllQuizLeaders($quiz->getId());
             $num = 0;
             foreach ($leaders as $key => $leader) {
-                if($leader["userId"] == $user->getId() && $leader["gameId"] == $game->getId())
+                if($leader["userId"] == $user->getId() && $leader["gameId"] == $game->getId()) {
                     $num = $key+1;
+                    break;
+                }
             }
 
             return $this->render('quiz/quizLeaders.html.twig',
@@ -68,6 +71,11 @@ class QuizQuestionController extends AbstractController
             ->getRepository(Question::class)
             ->getQuestionByNum($quiz->getId(), $answersNum);
 
+        if(!$question) {
+            throw $this->createNotFoundException(
+                'Quiz empty'
+            );
+        }
 
         $options = $this->getDoctrine()
             ->getRepository(QuestionOption::class)
@@ -82,19 +90,30 @@ class QuizQuestionController extends AbstractController
             ]);
     }
 
+
+
     /**
-     * @Route("/quiz/{id}/check", name="answerCheck", requirements={"id"="\d+"})
+     * @Route("/quiz/{id}/check", name="answerCheck", requirements={"id"="\d+"}, methods={"POST"})
      * @ParamConverter("quiz", options={"id" = "id"})
      */
     public function checkAnswer(Quiz $quiz, Request $request)
     {
-        //TODO check optionId
+        $optionId = (int)$request->request->get('optionId');
+
+        if(!$optionId || !is_int($optionId)) {
+            throw $this->createNotFoundException(
+                'Ai yai yai, bad guy'
+            );
+        }
 
         $user = $this->getUser();
 
         $game = $this->getDoctrine()
             ->getRepository(Game::class)
             ->getGame($quiz->getId(), $user->getId());
+
+        if(!$game)
+            return $this->redirectToRoute('quizGame', ["id"=>$quiz->getId()]);
 
         $answersNum = $this->getDoctrine()
             ->getRepository(Answers::class)
@@ -104,12 +123,17 @@ class QuizQuestionController extends AbstractController
             ->getRepository(Question::class)
             ->getQuestionByNum($quiz->getId(), $answersNum);
 
-
         $option = $this->getDoctrine()
             ->getRepository(QuestionOption::class)
             ->findOneBy([
-                'id' => $request->request->get('optionId')
+                'id' => $optionId
             ]);
+
+        if(!$question || !$option) {
+            throw $this->createNotFoundException(
+                'Not found question'
+            );
+        }
 
         $answer = new Answers($game, $question, $option->getIsValid());
 
