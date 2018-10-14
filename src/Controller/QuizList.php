@@ -23,18 +23,22 @@ class QuizList extends Controller
      */
     public function homePage(Request $request)
     {
-        $quiz = $this->getDoctrine()
-            ->getRepository(Quiz::class)
-            ->getAllActiveQuiz();
+
+        $gameRep = $this->getDoctrine()->getRepository(Game::class);
+        $quizRep = $this->getDoctrine()->getRepository(Quiz::class);
+
+        $quiz = $quizRep->findAll();
 
         $data = [];
         foreach ($quiz as $key => $value){
-            $q = $this->getDoctrine()
-                ->getRepository(Game::class)
-                ->getQuizLeaders($value->getId(), 1);
+            $leaders = $gameRep->getQuizLeaders($value->getId(), 1);
+            $gameCount = $gameRep->getCountGame($value->getId());
 
-            $data[$value->getId()]['leaders'] = $q;
-            $data[$value->getId()]['quiz'] = $value;
+            $data[$value->getId()] = [
+                'gameCount' => $gameCount,
+                'leaders' => $leaders,
+                'quiz' => $value
+            ];
         }
 
         $paginator = $this->get('knp_paginator');
