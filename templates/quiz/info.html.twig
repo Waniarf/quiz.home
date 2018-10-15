@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+    <ul class="list-group " >
+    <h3>{% trans %}quiz.info{% endtrans %}</h3>
+        <li class="list-group-item">{% trans %}quiz.id{% endtrans %} : {{ quiz.id }}</li>
+        <li class="list-group-item">{% trans %}quiz.name{% endtrans %}: {{ quiz.name }}</li>
+        <li class="list-group-item">{% trans %}quiz.description{% endtrans %} : {{ quiz.description }}</li>
+        <li class="list-group-item">{% trans %}quiz.timeStart{% endtrans %}: {{ quiz.CreateData|date("H:m:s d/m/Y") }}</li>
+        <li class="list-group-item">{% trans %}quiz.status{% endtrans %} :
+            {% if quiz.isActive == 1 %}
+                {% trans %}quiz.active{% endtrans %}
+            {% else %}
+                {% trans %}quiz.notActive{% endtrans %}
+            {% endif %}
+        </li>
+        <li class="list-group-item list-group-item-info">{% trans %}quiz.questions{% endtrans %} :</h3>
+    {% for question in questions %}
+        <li class="list-group-item">{{ question.text }}</li>
+    {% endfor %}
+    </ul>
+    <div style = "margin :10px; margin-left: 0;"><a href = "/admin/quiz"><button class="btn btn-dark" align = "right">{% trans %}quiz.goToAllQuiz{% endtrans %}</button></a><br></div>
+{% endblock %}

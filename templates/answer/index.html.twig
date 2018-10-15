@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <h2>
+        {% trans %}
+            answer.listAnswer
+        {% endtrans %}
+    </h2>
+    {% if (answers) %}
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+        <tr>
+            <th width = "5%">ID</th>
+            <th>
+                {% trans %}
+                    answer.question
+                {% endtrans %}
+            </th>
+
+            <th width = "7%" data-orderable="false" >
+                {% trans %}
+                    answer.valid
+                {% endtrans %}
+            </th>
+        </tr>
+        </thead>
+        {% for answer  in answers %}
+            <tr>
+                <td>{{ answer.id }}</td>
+                <td>{{ answer.question.id }}</td>
+                <td>{% if (answer.IsValid==0) %}
+                        {% trans %}
+                            answer.isValidFalse
+                        {% endtrans %}
+                    {% else %}
+                        {% trans %}
+                            answer.isValidTrue
+                        {% endtrans %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        <tfoot>
+        <tr>
+            <th width = "5%">ID</th>
+            <th>
+                {% trans %}
+                    Question
+                {% endtrans %}
+            </th>
+
+            <th width = "7%" data-orderable="false" >
+                {% trans %}
+                    IsValid
+                {% endtrans %}
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    {% else %}
+        {% trans %}
+            Not found answers
+        {% endtrans %}
+    {% endif %}
+    <script>
+
+        $(document).ready(function() {
+            $('#example').DataTable(
+                {
+                    "lengthMenu": [[10, 25, 50], [10, 25, 50]],
+                }
+            );
+        } );
+    </script>
+
+{% endblock %}
