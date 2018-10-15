@@ -47,6 +47,10 @@ question:
   input : Введите текст вопроса
   answer : Ответ
   variableAnswer : Варианты ответов
+  incorrect: Неверно
+  correct: Верно
+  respond: Ответить
+  next: Следующий
 
 quiz:
   id : id
@@ -67,6 +71,7 @@ quiz:
   info : Информация о викторине
   gameCount : Количество игроков
   leader : Лидер викторины
+  leaders: Лидеры викторины
   start : Старт
   yourPlace : Ваше место в рейтинге
 

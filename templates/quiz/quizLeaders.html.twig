@@ -2,7 +2,8 @@
 
 {% block body %}
     <h2>{% trans %}quiz.yourPlace{% endtrans %}: {{ num }}</h2>
-    {% trans %}quiz.leader{% endtrans %}:
+    {% trans %}quiz.leaders{% endtrans %}:
+    <br><br>
     {% for leader in leaders %}
         <p>{{ leader['username'] }} - {{ leader['score'] }}</p>
     {% endfor %}
