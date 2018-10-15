@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,7 +20,14 @@ class AnswersRepository extends ServiceEntityRepository
         parent::__construct($registry, Answers::class);
     }
 
-    public function getCountAnswers(int $gameId)
+    /**
+     * @param int $gameId
+     *
+     * @return int
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountAnswers(int $gameId): int
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(

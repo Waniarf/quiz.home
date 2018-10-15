@@ -5,6 +5,7 @@
  * Date: 09.10.18
  * Time: 23:54
  */
+declare(strict_types=1);
 
 namespace App\Controller;
 

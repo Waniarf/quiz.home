@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,6 +20,12 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    /**
+     * @param int $quizId
+     * @param int $num
+     *
+     * @return null
+     */
     public function getQuestionByNum(int $quizId, int $num)
     {
         $em = $this->getEntityManager();
@@ -35,7 +42,14 @@ class QuestionRepository extends ServiceEntityRepository
         return $result[$num];
     }
 
-    public function getCountQuestionInQuiz(int $quizId)
+    /**
+     * @param int $quizId
+     *
+     * @return int
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountQuestionInQuiz(int $quizId): int
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery(

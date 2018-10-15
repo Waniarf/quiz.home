@@ -5,6 +5,7 @@
  * Date: 11.10.18
  * Time: 8:48
  */
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -35,9 +36,12 @@ class QuizQuestionController extends AbstractController
             return $this->redirectToRoute('quizList');
         }
 
-        $game = $this->getDoctrine()
-            ->getRepository(Game::class)
-            ->getGame($quiz->getId(), $user->getId());
+        $gameRep = $this->getDoctrine()->getRepository(Game::class);
+        $answersRep = $this->getDoctrine()->getRepository(Answers::class);
+        $questionRep = $this->getDoctrine()->getRepository(Question::class);
+        $questionOptionsRep = $this->getDoctrine()->getRepository(QuestionOption::class);
+
+        $game = $gameRep->getGame($quiz->getId(), $user->getId());
 
         if($game === null){
             $game = new Game($quiz, $user);
@@ -47,33 +51,17 @@ class QuizQuestionController extends AbstractController
         }
 
         if($game->getTimeEnd() !== null) {
+            $leaders = $gameRep->getAllQuizLeaders($quiz->getId());
 
-            $leaders = $this->getDoctrine()
-                ->getRepository(Game::class)
-                ->getAllQuizLeaders($quiz->getId());
-            $num = 0;
-            foreach ($leaders as $key => $leader) {
-                if($leader["userId"] == $user->getId() && $leader["gameId"] == $game->getId()) {
-                    $num = $key+1;
-                    break;
-                }
-            }
-
-            return $this->render('quiz/quizLeaders.html.twig',
-                [
+            return $this->render('quiz/quizLeaders.html.twig', [
                     'leaders' => array_slice($leaders, 0, 3),
-                    'num' => $num
+                    'num' => $this->getSelfPosition($leaders, $user->getId(), $game->getId())
                 ]
             );
         }
 
-        $answersNum = $this->getDoctrine()
-            ->getRepository(Answers::class)
-            ->getCountAnswers($game->getId());
-
-        $question = $this->getDoctrine()
-            ->getRepository(Question::class)
-            ->getQuestionByNum($quiz->getId(), $answersNum);
+        $answersNum = $answersRep->getCountAnswers($game->getId());
+        $question = $questionRep->getQuestionByNum($quiz->getId(), $answersNum);
 
         if(!$question) {
             throw $this->createNotFoundException(
@@ -81,10 +69,7 @@ class QuizQuestionController extends AbstractController
             );
         }
 
-        $options = $this->getDoctrine()
-            ->getRepository(QuestionOption::class)
-            ->getOptions($question->getId());
-
+        $options = $questionOptionsRep->getOptions($question->getId());
 
         return $this->render('quiz/quizQuestion.html.twig',
             [
@@ -93,8 +78,6 @@ class QuizQuestionController extends AbstractController
                 'quiz'=>$quiz
             ]);
     }
-
-
 
     /**
      * @Route("/quiz/{id}/check", name="answerCheck", requirements={"id"="\d+"}, methods={"POST"})
@@ -110,26 +93,21 @@ class QuizQuestionController extends AbstractController
             );
         }
 
-        $user = $this->getUser();
+        $gameRep = $this->getDoctrine()->getRepository(Game::class);
+        $answersRep = $this->getDoctrine()->getRepository(Answers::class);
+        $questionRep = $this->getDoctrine()->getRepository(Question::class);
+        $questionOptionsRep = $this->getDoctrine()->getRepository(QuestionOption::class);
 
-        $game = $this->getDoctrine()
-            ->getRepository(Game::class)
-            ->getGame($quiz->getId(), $user->getId());
+        $user = $this->getUser();
+        $game = $gameRep->getGame($quiz->getId(), $user->getId());
 
         if(!$game)
             return $this->redirectToRoute('quizGame', ["id"=>$quiz->getId()]);
 
-        $answersNum = $this->getDoctrine()
-            ->getRepository(Answers::class)
-            ->getCountAnswers($game->getId());
+        $answersNum = $answersRep->getCountAnswers($game->getId());
+        $question = $questionRep->getQuestionByNum($quiz->getId(), $answersNum);
 
-        $question = $this->getDoctrine()
-            ->getRepository(Question::class)
-            ->getQuestionByNum($quiz->getId(), $answersNum);
-
-        $option = $this->getDoctrine()
-            ->getRepository(QuestionOption::class)
-            ->findOneBy([
+        $option = $questionOptionsRep->findOneBy([
                 'id' => $optionId
             ]);
 
@@ -146,9 +124,7 @@ class QuizQuestionController extends AbstractController
             $game->setScore($game->getScore()+1);
         }
 
-        $questionNum = $this->getDoctrine()
-            ->getRepository(Question::class)
-            ->getCountQuestionInQuiz($quiz->getId());
+        $questionNum = $questionRep->getCountQuestionInQuiz($quiz->getId());
 
         if($questionNum === $answersNum+1)
         {
@@ -159,7 +135,26 @@ class QuizQuestionController extends AbstractController
         $em->persist($game);
         $em->persist($answer);
         $em->flush();
+
         return new JsonResponse(['result'=>$option->getIsValid()]);
     }
 
+    /**
+     * @param array $leaders
+     * @param int $userId
+     * @param int $gameId
+     *
+     * @return int
+     */
+    private function getSelfPosition(array $leaders, int $userId, int $gameId): int
+    {
+        $num = 0;
+        foreach ($leaders as $key => $leader) {
+            if($leader["userId"] == $userId && $leader["gameId"] == $gameId) {
+                $num = $key+1;
+                break;
+            }
+        }
+        return $num;
+    }
 }
