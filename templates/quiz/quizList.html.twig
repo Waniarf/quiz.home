@@ -11,7 +11,11 @@
         {% for leader in itemquiz['leaders'] %}
             <p>{% trans %}quiz.leader{% endtrans %}: {{ leader.username }} - {{ leader.score }}</p>
         {% endfor %}
-        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }}>{% trans %}quiz.start{% endtrans %}</a>
+        {% if itemquiz.quiz.isActive %}
+            <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }}>{% trans %}quiz.start{% endtrans %}</a>
+        {% else %}
+            <button type="button" class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }} disabled>{% trans %}quiz.start{% endtrans %}</button>
+        {% endif %}
         <hr>
     {% endfor %}
     <div class="navigation">
