@@ -2,12 +2,16 @@
 
 {% block body %}
     {% for itemquiz in quiz %}
-        <p>{{ itemquiz.quiz.name }}</p>
+        <p>{{ itemquiz.quiz.name }} |
+            {% trans %}
+                quiz.gameCount
+            {% endtrans %}
+            : {{ itemquiz.gameCount }}</p>
         <p>{{ itemquiz.quiz.description }}</p>
         {% for leader in itemquiz['leaders'] %}
-            <p>Leader: {{ leader.username }} - {{ leader.score }}</p>
+            <p>{% trans %}quiz.leader{% endtrans %}: {{ leader.username }} - {{ leader.score }}</p>
         {% endfor %}
-        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }}>Start</a>
+        <a class="btn btn-success" href={{ path("quizGame", {'id':itemquiz.quiz.id}) }}>{% trans %}quiz.start{% endtrans %}</a>
         <hr>
     {% endfor %}
     <div class="navigation">

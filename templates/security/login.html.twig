@@ -3,22 +3,22 @@
 {% block body %}
     <form class="form-horizontal" action="{{ path('login') }}" method="post">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="username">Username:</label>
+            <label class="control-label col-sm-2" for="username">{% trans %}username{% endtrans %}:</label>
             <div class="col-sm-10">
-                <input type="text" id="username" name="_username" class="form-control" placeholder="Enter Name" value="{{ last_username }}">
+                <input type="text" id="username" name="_username" class="form-control" placeholder="{% trans %}enterName{% endtrans %}" value="{{ last_username }}">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="password">Password:</label>
+            <label class="control-label col-sm-2" for="password">{% trans %}password{% endtrans %}:</label>
             <div class="col-sm-10">
-                <input class="form-control" placeholder="Enter password" type="password" id="password" name="_password">
+                <input class="form-control" placeholder="{% trans %}enterPassword{% endtrans %}" type="password" id="password" name="_password">
                 {% if error %}
                     <div class="ErrorText">{{ error.messageKey}}</div>
                 {% endif %}
             </div>
         </div>
         <p>
-            <a  href={{ path("recoveryPassword") }}>Забыли пароль?</a>
+            <a  href={{ path("recoveryPassword") }}> {% trans %}restorePassword{% endtrans %}</a>
         </p>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

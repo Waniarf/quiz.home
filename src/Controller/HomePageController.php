@@ -24,7 +24,6 @@ class HomePageController extends Controller
      */
     public function homePage(Request $request)
     {
-
         return $this->render(
             'homepage/homepage.html.twig'
         );

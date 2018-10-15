@@ -3,7 +3,15 @@
 {% block title %}{{ controller_name }}!{% endblock %}
 
 {% block body %}
-    <div style = "margin :10px; margin-left: 0;"><a href = "/admin/question"><button class="btn btn-dark" align = "right">Go Back to all question</button></a><br></div>
+    <div style = "margin :10px; margin-left: 0;">
+        <a href = "/admin/question">
+            <button class="btn btn-dark" align = "right">
+                {% trans %}
+                    question.goBackToAllQuestion
+                {% endtrans %}
+            </button>
+        </a>
+    </div>
     {{ form_start(form, {  'name':'CustomValid','method': 'POST'}) }}
     {{ form_errors(form) }}
     {{ form_row(form.Text, { 'label' : 'Text question' }) }}

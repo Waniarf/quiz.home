@@ -1,8 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2>Your place: {{ num }}</h2>
-    Leaders:
+    <h2>{% trans %}quiz.yourPlace{% endtrans %}: {{ num }}</h2>
+    {% trans %}quiz.leader{% endtrans %}:
     {% for leader in leaders %}
         <p>{{ leader['username'] }} - {{ leader['score'] }}</p>
     {% endfor %}
