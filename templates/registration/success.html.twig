@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2 class="text-center">You are registered successfully. <a href={{ url('login') }}>You can login</a></h2>
+    <h2 class="text-center">{% trans %}registrationDone{% endtrans %}. <a href={{ url('login') }}>{% trans %}login{% endtrans %}</a></h2>
 {% endblock %}

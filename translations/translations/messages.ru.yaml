@@ -14,6 +14,9 @@ register : Зарегестрироваться
 or : или
 login : Войти
 restorePassword : Забыли пароль?
+confirmRegistration: Подтвердите регистрацию в письме
+registrationDone: Вы успешно зарегистрировалиль
+
 
 menu:
   questions : Вопросы
