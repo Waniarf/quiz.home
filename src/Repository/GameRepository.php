@@ -68,6 +68,19 @@ class GameRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
+    public function getCountGame(int $quizId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT Count(g)
+            FROM App\Entity\Game g
+            LEFT JOIN g.quiz q
+            WHERE g.timeEnd is not NULL
+            AND q.id = :quizId'
+        )
+            ->setParameter('quizId', $quizId);
+        return (int)$query->getOneOrNullResult()[1];
+    }
 
 //    /**
 //     * @return Game[] Returns an array of Game objects

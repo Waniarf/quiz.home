@@ -1,0 +1,87 @@
+Save : Сохранить
+password : Пароль
+enterPassword : Введите пароль
+username : Имя пользователя
+enterName : Введите имя пользователя
+Username : Имя пользователя
+Email : Электронная почта
+Password : Пароль
+Repeat Password : Повторите пароль
+Name : Имя
+Surname : Фамилия
+Lastname : Отчество
+register : Зарегестрироваться
+or : или
+login : Войти
+restorePassword : Забыли пароль?
+
+menu:
+  questions : Вопросы
+  quizs: Викторины
+  users: Пользователи
+  answers: Ответы
+  list: Списки
+  quiz:
+    list: Список викторин
+  home : Главная
+  login: Войти
+  logout : Выйти
+  registration : Регистрация
+
+
+answer:
+  listAnswer: Список вопросов
+  question: Вопрос
+  valid: Правильность
+  isValidTrue: Верно
+  isValidFalse: Не верно
+  notFoundAnswers: Не найдено вопросов
+
+question:
+  list: Список вопросов
+  createNewQuestion : Создать новый вопрос
+  text : Содержание вопроса
+  delete : Удалить
+  edit : Редактировать
+  goBackToAllQuestion : Вернуться к списку вопросов
+  input : Введите текст вопроса
+  answer : Ответ
+  variableAnswer : Варианты ответов
+
+quiz:
+  id : id
+  createNewQuiz : Создать новую викторину
+  list: Список викторин
+  name: Название викторины
+  isActive : Активна ли  викторина
+  notFound : Не найдено вопросов для данной викторины
+  active: Активна
+  notActive: Не активна
+  description: Описание
+  timeStart: Время создания
+  status: Статус
+  delete: Удалить
+  edit: Редактировать
+  questions : Вопросы
+  goToAllQuiz : Вернуться к списку викторин
+  info : Информация о викторине
+  gameCount : Количество игроков
+  leader : Лидер викторины
+  start : Старт
+  yourPlace : Ваше место в рейтинге
+
+user:
+  username : Никнэйм
+  name : Имя
+  surname : Фамилия
+  lastname : Отчество
+  role : Роль
+  email : Электронная почта
+  isActive :
+  delete : Удалить
+  edit : Редактировать
+
+form:
+  label.username: Имя пользователя
+main:
+  hello: Добро пожаловать на сайт СуперВикторина!

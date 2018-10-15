@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Answers;
 use App\Entity\Game;
 use App\Entity\Question;
@@ -19,6 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 class QuizQuestionController extends AbstractController
 {
@@ -68,11 +68,9 @@ class QuizQuestionController extends AbstractController
             ->getRepository(Question::class)
             ->getQuestionByNum($quiz->getId(), $answersNum);
 
-
         $options = $this->getDoctrine()
             ->getRepository(QuestionOption::class)
             ->getOptions($question->getId());
-
 
         return $this->render('quiz/quizQuestion.html.twig',
             [
@@ -103,7 +101,6 @@ class QuizQuestionController extends AbstractController
         $question = $this->getDoctrine()
             ->getRepository(Question::class)
             ->getQuestionByNum($quiz->getId(), $answersNum);
-
 
         $option = $this->getDoctrine()
             ->getRepository(QuestionOption::class)
