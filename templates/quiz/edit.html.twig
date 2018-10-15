@@ -34,8 +34,8 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ question.Text }}</td>
-                    <td><a href="/admin/question/edit/{{ question.id }}">Edit</a></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ question.id }}>delete</button></td>
+                    <td><a href="/admin/question/edit/{{ question.id }}">{% trans %}quiz.edit{% endtrans %}</a></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ question.id }}>{% trans %}quiz.delete{% endtrans %}</button></td>
                 </tr>
             {% endfor %}
             <tfoot>
@@ -48,11 +48,22 @@
             </tfoot>
         </table>
     {% else %}
-        Not found questions for this quiz
+        {% trans %}
+            quiz.notFound
+        {% endtrans %}
     {% endif %}
     {{ form_row(form.question) }}
     {{ form_end(form) }}
-    <div style = "margin :10px; margin-left: 0;"><a href = "/admin/question/new"><button class="btn btn-dark" align = "right">Create new question</button></a><br></div>
+    <div style = "margin :10px; margin-left: 0;">
+        <a href = "/admin/question/new">
+            <button class="btn btn-dark" align = "right">
+                {% trans %}
+                    question.createNewQuestion
+                {% endtrans %}
+            </button>
+        </a>
+        <br>
+    </div>
     </div>
     <script>
         $(document).ready(function () {

@@ -4,37 +4,84 @@
 
 {% block body %}
 
-    <h2>List questions</h2>
-    <div style = "margin :10px; margin-left: 0;"><a href = "/admin/question/new"><button class="btn btn-dark" align = "right">Create new question</button></a><br></div>
+    <h2>
+        {% trans %}
+            question.list
+        {% endtrans %}
+    </h2>
+    <div style = "margin :10px; margin-left: 0;">
+        <a href = "/admin/question/new">
+            <button class="btn btn-dark" align = "right">
+                {% trans %}
+                    question.createNewQuestion
+                {% endtrans %}
+            </button>
+        </a>
+        <br>
+    </div>
 
     <table id="example" class="table table-striped table-bordered center" style="width:100%">
         <thead>
         <tr>
             <th width = "5%">ID</th>
-            <th>Text</th>
-            <th width = "10%" data-orderable="false">Delete</th>
-            <th width = "10%" data-orderable="false">Edit</th>
+            <th>
+                {% trans %}
+                    question.text
+                {% endtrans %}
+            </th>
+            <th width = "10%" data-orderable="false">
+                {% trans %}
+                    question.edit
+                {% endtrans %}
+            </th>
+            <th width = "10%" data-orderable="false">
+                {% trans %}
+                    question.delete
+                {% endtrans %}
+            </th>
         </tr>
         </thead>
         {% for key  in questions %}
             <tr>
-                <td><a href="/admin/question/info/{{ key.id }}">{{ key.id }} </a>  </td>
+                <td><a href="/admin/question/info/{{ key.id }}">{{ key.id }} </a></td>
                 <td>{{ key.text }}</td>
-                <td><a href="/admin/question/edit/{{ key.id }}">Edit</a></td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ key.id }}>delete</button></td>
+                <td>
+                    <a href="/admin/question/edit/{{ key.id }}">
+                        {% trans %}
+                            question.edit
+                        {% endtrans %}
+                    </a>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ key.id }}>
+                        {% trans %}
+                            question.delete
+                        {% endtrans %}
+                    </button>
+                </td>
             </tr>
         {% endfor %}
         <tfoot>
         <tr>
             <th>ID</th>
-            <th>Text</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>
+                {% trans %}
+                    question.text
+                {% endtrans %}
+            </th>
+            <th>
+                {% trans %}
+                    question.edit
+                {% endtrans %}
+            </th>
+            <th>
+                {% trans %}
+                    question.delete
+                {% endtrans %}
+            </th>
         </tr>
         </tfoot>
     </table>
-
-
 
     <script>
 

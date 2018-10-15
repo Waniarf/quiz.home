@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class QuestionController extends AbstractController
 {
@@ -27,13 +28,13 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("admin/question/info/{id}", name="question_info")
+     * @Route("admin/question/info/{id}", name="question_info", requirements={"id"="\d+"})
      */
     public function info(QuestionRepository $questionRepository, $id)
     {
         $question = $questionRepository->findOneBy(['id' => $id]);
         if (!$question) {
-            return $this->redirectToRoute('question');
+            throw new NotFoundHttpException("Page not found");
         }
         return $this->render('question/info.html.twig', [
             'controller_name' => 'QuestionController',
@@ -57,13 +58,14 @@ class QuestionController extends AbstractController
         $question->addQuestionOption($option4);
         $form = $this->createForm(CreateQuestionType::class, $question);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $question = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
             return $this->redirectToRoute('question');
         }
+
         return $this->render('question/new.html.twig', [
             'controller_name' => 'QuestionController',
             'form' => $form->createView(),
@@ -71,18 +73,18 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("admin/question/edit/{id}", name="question_edit")
+     * @Route("admin/question/edit/{id}", name="question_edit", requirements={"id"="\d+"})
      */
     public function edit(QuestionRepository $questionRepository, $id, Request $request)
     {
         $question = $questionRepository->findOneBy(['id' => $id]);
 
         if (!$question) {
-            return $this->redirectToRoute('question');
+            throw new NotFoundHttpException("Page not found");
         }
         $form = $this->createForm(CreateQuestionType::class, $question);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $question = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -100,7 +102,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("admin/question/delete/{id}", name="question_delete")
+     * @Route("admin/question/delete/{id}", name="question_delete", requirements={"id"="\d+"})
      */
     public function delete(QuestionRepository $questionRepository, $id, Request $request)
     {
@@ -110,7 +112,7 @@ class QuestionController extends AbstractController
             $em->remove($question);
             $em->flush();
         } else {
-            return $this->redirectToRoute('question');
+            throw new NotFoundHttpException("Page not found");
         }
     }
 }
