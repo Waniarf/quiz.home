@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,7 +20,16 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function getUserByToken(string $token, string $typeToken){
+    /**
+     * @param string $token
+     * @param string $typeToken
+     *
+     * @return User
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getUserByToken(string $token, string $typeToken)
+    {
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT user
@@ -34,6 +44,13 @@ class UserRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
+    /**
+     * @param string $username
+     *
+     * @return User
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getUserByUsername(string $username)
     {
         $em = $this->getEntityManager();
@@ -45,6 +62,14 @@ class UserRepository extends ServiceEntityRepository
             ->setParameter('username', $username);
         return $query->getOneOrNullResult();
     }
+
+    /**
+     * @param string $email
+     *
+     * @return User
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getUserByEmail(string $email)
     {
         $em = $this->getEntityManager();

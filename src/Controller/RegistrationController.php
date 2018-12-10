@@ -27,17 +27,15 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncode, \Swift_Mailer $mailer)
     {
-
         $user = new User();
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid()) {
+            $userRep = $this->getDoctrine()->getRepository(User::class);
 
-            $check = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->getUserByUsername($user->getUsername());
+            $check = $userRep->getUserByUsername($user->getUsername());
 
             if($check){
                 $form->get("username")->addError(new FormError('Username used'));
@@ -47,9 +45,7 @@ class RegistrationController extends AbstractController
                 );
             }
 
-            $check = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->getUserByEmail($user->getEmail());
+            $check = $userRep->getUserByEmail($user->getEmail());
 
             if($check){
                 $form->get("email")->addError(new FormError('Email used'));
@@ -58,7 +54,6 @@ class RegistrationController extends AbstractController
                     array('form'=>$form->createView())
                 );
             }
-
 
             $token = new Token("REGISTRATION");
             $user->addToken($token);

@@ -55,6 +55,8 @@ class MailSender
 
     /**
      * @param string $verificationUrl
+     *
+     * @return void
      */
     public function setVerificationUrl(string $verificationUrl): void
     {
@@ -90,6 +92,8 @@ class MailSender
 
     /**
      * @param string $name
+     *
+     * @return void
      */
     public function setName(string $name): void
     {
