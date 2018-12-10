@@ -11,7 +11,7 @@
                     question.variableAnswer
                 {% endtrans %}
             </th>
-            <th width = "15%">Is correct</th>
+            <th width = "15%">{% trans %}question.isCorrect{% endtrans %}</th>
         </thead>
         <tbody>
         {% for option in question.questionOptions  %}

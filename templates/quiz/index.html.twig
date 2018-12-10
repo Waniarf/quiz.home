@@ -23,7 +23,7 @@
                 <td>{{ quiz.name }}</td>
                 <td>{{ quiz.description }}</td>
                 <td>{{ quiz.CreateData|date("H:m:s d/m/Y") }}</td>
-                <td>{% if quiz.isActive == 1 %} Active {% else %} Not active {% endif %}</td>
+                <td>{% if quiz.isActive == 1 %} {% trans %}quiz.active{% endtrans %} {% else %} {% trans %}quiz.notActive{% endtrans %} {% endif %}</td>
                 <td><a href = "/admin/quiz/edit/{{ quiz.id }}">{% trans %}quiz.edit{% endtrans %}</a></td>
                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id={{ quiz.id }}>{% trans %}quiz.delete{% endtrans %}</button></td>
             </tr>
@@ -57,17 +57,16 @@
                 url: `/admin/quiz/delete/${id}`,
                 datatype: "json",
                 success: function(data) {
+                    tr.empty();
                 }
             });
-            tr.empty();
+
         });
         $('.btn').on('click', function() {
             window.tr =  $(this).parents("tr:first");
-
         });
 
         $('#exampleModal').on('show.bs.modal', function (event) {
-
             var button = $(event.relatedTarget); // Button that triggered the modal
             window.id = button.data('id'); // Extract info from data-* attributes
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

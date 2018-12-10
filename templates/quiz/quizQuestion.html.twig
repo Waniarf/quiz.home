@@ -9,13 +9,13 @@
         </div>
     {% endfor %}
     <div>
-        <p class="alert alert-danger" id="incorrect" style="display: none;">incorrect</p>
-        <p class="alert alert-success" id="correct" style="display: none;">correct</p>
+        <p class="alert alert-danger" id="incorrect" style="display: none;">{% trans %}incorrect{% endtrans %}</p>
+        <p class="alert alert-success" id="correct" style="display: none;">{% trans %}correct{% endtrans %}</p>
     </div>
     <div>
         <br>
-        <button type="button" onclick="check()" class="btn btn-default" id="resp">Respond</button>
-        <a class="btn btn-success" style="display: none;" id="next" href={{ path("quizGame", {'id':quiz.id}) }} >Next</a>
+        <button type="button" onclick="check()" class="btn btn-default" id="resp">{% trans %}respond{% endtrans %}</button>
+        <a class="btn btn-success" style="display: none;" id="next" href={{ path("quizGame", {'id':quiz.id}) }} >{% trans %}next{% endtrans %}</a>
     </div>
     <script>
          function check() {

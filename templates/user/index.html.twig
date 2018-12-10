@@ -13,7 +13,7 @@
                 <th>{% trans %}user.surname{% endtrans %}</th>
                 <th>{% trans %}user.role{% endtrans %}</th>
                 <th>{% trans %}user.email{% endtrans %}</th>
-                <th width = "6%">{% trans %}user.username{% endtrans %}</th>
+                <th width = "6%">{% trans %}user.isActive{% endtrans %}</th>
                 <th width = "6%" data-orderable="false">{% trans %}user.edit{% endtrans %}</th>
                 <th width = "6%" data-orderable="false">{% trans %}user.delete{% endtrans %}</th>
             </tr>
@@ -25,11 +25,11 @@
             <td>{{ key.name }}</td>
             <td>{{ key.surname }}</td>
             <td>{{ key.lastname }}</td>
-            <td>{% if (key.roles[0] == 'ROLE_ADMIN') %} Admin {% else %} User {% endif %}</td>
+            <td>{% if (key.roles[0] == 'ROLE_ADMIN') %} {% trans %}user.admin{% endtrans %} {% else %} {% trans %}user.user{% endtrans %} {% endif %}</td>
             <td>{{ key.Email }}</td>
-            <td>{{ key.IsActive }}</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <td>{% if (key.isActive == 1) %}{% trans %}user.activeTrue{% endtrans %} {% else %} {% trans %}user.activeFalse{% endtrans %} {% endif %}</td>
+            <td>{% trans %}user.edit{% endtrans %}</td>
+            <td>{% trans %}user.delete{% endtrans %}</td>
         </tr>
         {% endfor %}
         <tfoot>
@@ -41,7 +41,7 @@
             <th>{% trans %}user.surname{% endtrans %}</th>
             <th>{% trans %}user.role{% endtrans %}</th>
             <th>{% trans %}user.email{% endtrans %}</th>
-            <th width = "6%">{% trans %}user.username{% endtrans %}</th>
+            <th width = "6%">{% trans %}user.isActive{% endtrans %}</th>
             <th width = "6%" data-orderable="false">{% trans %}user.edit{% endtrans %}</th>
             <th width = "6%" data-orderable="false">{% trans %}user.delete{% endtrans %}</th>
         </tr>

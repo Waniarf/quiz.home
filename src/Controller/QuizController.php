@@ -60,7 +60,7 @@ class QuizController extends AbstractController
     public function new(\Symfony\Component\HttpFoundation\Request $request)
     {
         $quiz = new Quiz();
-        $time = new \DateTimeImmutable();
+        $time = new \DateTime();
         $quiz->setCreateData($time);
         $quiz->setIsActive(false);
         $form = $this->createForm(QuizType::class, $quiz);
@@ -86,7 +86,7 @@ class QuizController extends AbstractController
     /**
      * @Route("admin/quiz/edit/{id}", name="quiz_edit", requirements={"id"="\d+"})
      */
-    public function edit(\Symfony\Component\HttpFoundation\Request $request, $id, QuizRepository $quizRepository, QuestionRepository $questionRepository)
+    public function edit(\Symfony\Component\HttpFoundation\Request $request, int $id, QuizRepository $quizRepository, QuestionRepository $questionRepository)
     {
         $quiz = $quizRepository->find($id);
 
@@ -95,6 +95,7 @@ class QuizController extends AbstractController
             $form = $this->createForm(EditQuizType::class, $quiz);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
+
                 $questionId = $form['question']->getViewData();
                 $question = $questionRepository->find(['id' => $questionId]);
                 $quiz->addQuestion($question);

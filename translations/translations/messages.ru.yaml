@@ -14,6 +14,17 @@ register : Зарегестрироваться
 or : или
 login : Войти
 restorePassword : Забыли пароль?
+confirmRegistration: Подтвердите регистрацию в письме
+registrationDone: Вы успешно зарегистрировалиль
+Close : Закрыть
+Delete : Удалить
+Text question: Текст вопроса
+input variable answer here: Введите вариант ответа
+incorrect: Не верный ответ
+correct: Верный ответ
+respond: Ответить
+next: Следующий
+
 
 menu:
   questions : Вопросы
@@ -47,6 +58,11 @@ question:
   input : Введите текст вопроса
   answer : Ответ
   variableAnswer : Варианты ответов
+  incorrect: Неверно
+  correct: Верно
+  respond: Ответить
+  next: Следующий
+  isCorrect : Правильность
 
 quiz:
   id : id
@@ -67,6 +83,7 @@ quiz:
   info : Информация о викторине
   gameCount : Количество игроков
   leader : Лидер викторины
+  leaders: Лидеры викторины
   start : Старт
   yourPlace : Ваше место в рейтинге
 
@@ -77,9 +94,13 @@ user:
   lastname : Отчество
   role : Роль
   email : Электронная почта
-  isActive :
+  isActive : Активирован
   delete : Удалить
   edit : Редактировать
+  admin: Админ
+  user: Пользователь
+  activeTrue: Активирован
+  activeFalse: Не активирован
 
 form:
   label.username: Имя пользователя

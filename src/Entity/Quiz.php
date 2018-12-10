@@ -44,7 +44,6 @@ class Quiz
 
     private $questions;
 
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="Quiz")
      */
